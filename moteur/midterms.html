@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; padding: 0; background: #030712; overflow: hidden; }
+  #wrap { position: relative; width: 1080px; height: 1920px; }
+  canvas, svg { position: absolute; left: 0; top: 0; }
+  text { font-family: 'Inter', sans-serif; }
+  .disp { font-family: 'Inter Display', 'Inter', sans-serif; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="bg" width="1080" height="1920"></canvas>
+  <svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- text gradients (bounding box) -->
+      <linearGradient id="tGold" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFF6D8"/><stop offset="0.42" stop-color="#F6D27A"/>
+        <stop offset="0.78" stop-color="#D9A441"/><stop offset="1" stop-color="#A8731F"/>
+      </linearGradient>
+      <linearGradient id="tGreen" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#E9FFF4"/><stop offset="0.42" stop-color="#7DF2C0"/>
+        <stop offset="0.8" stop-color="#2DC98A"/><stop offset="1" stop-color="#138F5D"/>
+      </linearGradient>
+      <linearGradient id="tRed" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFD6D2"/><stop offset="0.42" stop-color="#F0766E"/><stop offset="0.8" stop-color="#C9353C"/><stop offset="1" stop-color="#8E1F27"/>
+      </linearGradient>
+      <filter id="gRed" filterUnits="userSpaceOnUse" x="-200" y="-200" width="1480" height="2320">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="b1"/>
+        <feComponentTransfer in="b1" result="b1s"><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+        <feMerge><feMergeNode in="b1s"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <linearGradient id="tBlue" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#F3F8FF"/><stop offset="1" stop-color="#9EC3F5"/>
+      </linearGradient>
+      <!-- icon gradients (icon local space 0..100) -->
+      <linearGradient id="iGold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">
+        <stop offset="0" stop-color="#FFF1C4"/><stop offset="0.5" stop-color="#F2C860"/><stop offset="1" stop-color="#C58F2E"/>
+      </linearGradient>
+      <linearGradient id="iGreen" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">
+        <stop offset="0" stop-color="#DFFFF0"/><stop offset="0.5" stop-color="#6FEDB6"/><stop offset="1" stop-color="#22B577"/>
+      </linearGradient>
+      <linearGradient id="iBlue" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">
+        <stop offset="0" stop-color="#F4F9FF"/><stop offset="1" stop-color="#A9CBF7"/>
+      </linearGradient>
+      <!-- auras -->
+      <radialGradient id="aGold"><stop offset="0" stop-color="#F2C14E" stop-opacity="0.30"/><stop offset="0.5" stop-color="#C8902C" stop-opacity="0.10"/><stop offset="1" stop-color="#C8902C" stop-opacity="0"/></radialGradient>
+      <radialGradient id="aGreen"><stop offset="0" stop-color="#3FE0A0" stop-opacity="0.28"/><stop offset="0.5" stop-color="#1FA872" stop-opacity="0.09"/><stop offset="1" stop-color="#1FA872" stop-opacity="0"/></radialGradient>
+      <radialGradient id="aBlue"><stop offset="0" stop-color="#7FB2FF" stop-opacity="0.22"/><stop offset="1" stop-color="#7FB2FF" stop-opacity="0"/></radialGradient>
+      <!-- light effects -->
+      <linearGradient id="doorLight" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFF7DE"/><stop offset="0.6" stop-color="#F6D27A"/><stop offset="1" stop-color="#D9A441"/>
+      </linearGradient>
+      <linearGradient id="ray" gradientUnits="userSpaceOnUse" x1="0" y1="820" x2="0" y2="1300">
+        <stop offset="0" stop-color="#F6D27A" stop-opacity="0.45"/><stop offset="1" stop-color="#F6D27A" stop-opacity="0"/>
+      </linearGradient>
+      <radialGradient id="flash" gradientUnits="userSpaceOnUse" cx="780" cy="700" r="1400">
+        <stop offset="0" stop-color="#FFF9EA" stop-opacity="1"/><stop offset="0.35" stop-color="#F6D27A" stop-opacity="0.85"/><stop offset="1" stop-color="#C8902C" stop-opacity="0.0"/>
+      </radialGradient>
+      <linearGradient id="spot" gradientUnits="userSpaceOnUse" x1="0" y1="150" x2="0" y2="1150">
+        <stop offset="0" stop-color="#EAF2FF" stop-opacity="0.04"/><stop offset="1" stop-color="#EAF2FF" stop-opacity="0.26"/>
+      </linearGradient>
+      <radialGradient id="spotFloor"><stop offset="0" stop-color="#EAF2FF" stop-opacity="0.35"/><stop offset="1" stop-color="#EAF2FF" stop-opacity="0"/></radialGradient>
+      <!-- glows -->
+      <filter id="gGold" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="16" result="b1"/>
+        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b2"/>
+        <feComponentTransfer in="b1" result="b1s"><feFuncA type="linear" slope="0.7"/></feComponentTransfer>
+        <feComponentTransfer in="b2" result="b2s"><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+        <feMerge><feMergeNode in="b1s"/><feMergeNode in="b2s"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="gGreen" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="16" result="b1"/>
+        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b2"/>
+        <feComponentTransfer in="b1" result="b1s"><feFuncA type="linear" slope="0.7"/></feComponentTransfer>
+        <feComponentTransfer in="b2" result="b2s"><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+        <feMerge><feMergeNode in="b1s"/><feMergeNode in="b2s"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="gSoft" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="b1"/>
+        <feComponentTransfer in="b1" result="b1s"><feFuncA type="linear" slope="0.55"/></feComponentTransfer>
+        <feMerge><feMergeNode in="b1s"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <g id="root"></g>
+  </svg>
+</div>
+<script>const QS = new URLSearchParams(location.search); window.THEME = QS.get("theme") || window.THEME || "noir"; window.FORMAT = QS.get("format") || window.FORMAT || "horizontal";</script>
+<script src="engine.js"></script>
+<script src="../exemples/midterms-2026/words.js"></script><script src="rig2.js"></script><script src="../exemples/midterms-2026/story.js"></script>
+</body>
+</html>
