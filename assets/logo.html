@@ -1,0 +1,45 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;width:1080px;height:1080px;overflow:hidden;background:#02060F}
+svg{display:block}
+</style></head><body>
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="42%" r="70%">
+    <stop offset="0" stop-color="#16367A"/><stop offset="0.45" stop-color="#0A1A45"/><stop offset="1" stop-color="#020611"/>
+  </radialGradient>
+  <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="#F2C14E" stop-opacity="0.22"/><stop offset="1" stop-color="#F2C14E" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFF6D8"/><stop offset="0.42" stop-color="#F6D27A"/><stop offset="0.78" stop-color="#D9A441"/><stop offset="1" stop-color="#A8731F"/>
+  </linearGradient>
+  <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#FFF1C4"/><stop offset="0.5" stop-color="#D9A441"/><stop offset="1" stop-color="#8E6118"/>
+  </linearGradient>
+  <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="b"/>
+    <feComponentTransfer in="b" result="bs"><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+    <feMerge><feMergeNode in="bs"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <clipPath id="globeClip"><circle cx="540" cy="540" r="330"/></clipPath>
+</defs>
+<rect width="1080" height="1080" fill="url(#bg)"/>
+<circle cx="540" cy="540" r="420" fill="url(#halo)"/>
+<g id="globe" stroke="#9EC3F5" stroke-width="3" fill="none" opacity="0.32" clip-path="url(#globeClip)">
+  <circle cx="540" cy="540" r="330"/>
+  <ellipse cx="540" cy="540" rx="110" ry="330"/><ellipse cx="540" cy="540" rx="220" ry="330"/>
+  <line x1="540" y1="210" x2="540" y2="870"/>
+  <ellipse cx="540" cy="540" rx="330" ry="80"/><ellipse cx="540" cy="540" rx="330" ry="190"/>
+  <line x1="210" y1="540" x2="870" y2="540"/>
+</g>
+<circle cx="540" cy="540" r="330" fill="none" stroke="#9EC3F5" stroke-width="3" opacity="0.45"/>
+<circle cx="540" cy="540" r="455" fill="none" stroke="url(#ring)" stroke-width="7" filter="url(#glow)"/>
+<g filter="url(#glow)">
+  <text x="540" y="548" text-anchor="middle" dominant-baseline="middle" font-family="Inter Display, Inter, sans-serif" font-weight="800" font-size="330" letter-spacing="-6" fill="url(#gold)">WF</text>
+</g>
+<!-- rising arrow along the lower-right of the globe -->
+<g filter="url(#glow)" fill="none" stroke="url(#gold)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M300 760 Q520 820 760 640"/>
+  <path d="M708 640 L762 638 L752 690"/>
+</g>
+</svg></body></html>
