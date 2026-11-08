@@ -21,7 +21,7 @@ Intelligente, élégante, affectueuse et attentive. Caractère affirmé, mais do
 - Jean bleu large et long.
 - Chaussures rouge bordeaux vernies à talon carré et bride.
 - Bijoux dorés : créoles, deux colliers à médaillons, montre dorée carrée.
-- Sac à main rouge bordeaux effet croco, chaîne dorée.
+- Sac à main rouge bordeaux effet croco, chaîne dorée, **fermoir doré simple sans logo** (le logo de marque de la planche est caché : toujours préciser « no logo, plain unbranded gold clasp » dans les prompts).
 
 ## Expressions caractéristiques
 Sourire complice, clin d'œil malicieux (main sur la joue, comme la planche), regard étonné, expression désapprobatrice, sourire tendre, regard sérieux quand elle recadre.
@@ -32,4 +32,4 @@ Voix existante, non testée (pour ne pas consommer) : chaleureuse, naturelle, ex
 L'accent québécois de la description ne s'applique pas : la série est en anglais pour les USA.
 
 ## Méthode
-Même méthode que Papa : vidéo IA (Kling 2.5 Turbo) à partir d'une image découpée dans la planche, sans changer aucun détail : `serie-papa/maman_depart_16x9.png` (fond prolongé sans bande visible).
+Même méthode que Papa : vidéo IA (Kling 2.5 Turbo) à partir d'une image découpée dans la planche, sans changer aucun détail : `serie-papa/maman_depart_16x9.png` (fond prolongé sans bande visible, logo du sac remplacé par un fermoir doré neutre).
