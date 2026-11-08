@@ -21,9 +21,12 @@ Motivé, sociable, optimiste, discipliné, parfois impatient, compétitif et dr�
 
 ## Voix retenue
 ElevenLabs **« Knox – Bro-Dude + Gym Feels »** (`voice_id: cgLpYGyXZhkyalKZ0xeZ`), modèle `eleven_v4`, anglais américain, 1 seule prise.
-Voix existante : jeune, énergique, drôle et chaleureuse, passe de l'enthousiasme à l'émotion.
+Voix validée, **ne plus la tester**. Voix existante : jeune, énergique, drôle et chaleureuse, passe de l'enthousiasme à l'émotion.
 Description demandée : masculin, médium légèrement grave, 25–30 ans, dynamique, confiant, chaleureux, motivant sans être agressif.
 Essai : `serie-papa/voix/sportif_essai_voix.mp3` (7 s, environ 92 crédits).
+
+## Méthode retenue
+Même méthode que Papa : vidéo IA (Kling) à partir d'une image découpée dans la planche (`serie-papa/sportif_depart_16x9.png`), sans changer aucun détail.
 
 ## Apparence (flat design, fidèle aux planches)
 - Silhouette : épaules très larges, gros bras, jambes courtes, carrure trapue.

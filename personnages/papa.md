@@ -26,9 +26,15 @@ Intelligent, observateur, réfléchi, bienveillant, parfois anxieux, sarcastique
 - Émotions : passe du sérieux à l'ironie, de la frustration à la tendresse.
 - Particularité : voix rassurante, intelligente, légèrement fatiguée par les responsabilités.
 
+## Méthode retenue (validée par l'utilisateur)
+- **Plus de flat design ni de style World Finance** : les vidéos sont générées par IA (Kling 2.5 Turbo via ElevenLabs).
+- Image de départ **découpée directement dans la planche** (gratuit, aucun détail modifié) : `serie-papa/papa_depart_16x9.png`. Les planches servent à garder tous les détails, toujours.
+- Caméra active et cinématique (zoom, rotation, travelling).
+- Test validé : `serie-papa/videos/papa_test_kling_5s.mp4` (2 121 crédits).
+
 ## Voix retenue
 ElevenLabs **« Miller – Relatable Dad Vibe »** (`voice_id: pCL8Ua4MoAGISUaDmw69`), modèle `eleven_v4`, anglais américain (public USA), 1 seule prise.
-Voix existante (pas de création) : chaleureuse, posée, « papa attachant » avec un humour pince-sans-rire et fatigué.
+Voix validée, **ne plus la tester** (ne pas consommer de crédits). Voix existante (pas de création) : chaleureuse, posée, « papa attachant » avec un humour pince-sans-rire et fatigué.
 Essai : `serie-papa/voix/papa_essai_voix.mp3` (9 s, environ 114 crédits).
 
 ## Apparence — d'après la planche de référence
