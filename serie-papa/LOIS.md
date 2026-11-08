@@ -17,3 +17,11 @@ Règles données par l'utilisateur, à respecter pour **chaque vidéo**.
 - **Position** : centré, en haut de l'écran (≈ 50–150 px du haut), pour **ne jamais cacher le visage** des personnages ni le contenu.
 - Pour garder cette zone libre, les plans sont cadrés avec de l'espace au-dessus de la tête (dans l'image de départ, le haut de la tête commence au moins à ≈ 300 px du haut ; « keep empty headroom at the top of the frame » dans le prompt). Si un gros plan monte trop haut, on décale le sous-titre au cas par cas.
 - Aperçu : `serie-papa/apercu_sous_titres.html`.
+
+## Loi 3 — L'environnement
+- Décor **simple et moderne**, **focus sur le personnage**.
+- Le lieu (chambre, bureau, cuisine, salle de sport…) est dessiné **uniquement en contours blancs**, au trait fin et régulier, sur le **fond de couleur unie** de la scène (loi 1). Pas de textures, pas d'ombres, pas de remplissage.
+- **Exception : les personnages** restent en 3D complète, avec tous les détails de leur planche.
+- Juste les éléments utiles pour comprendre le lieu (3 à 6 objets : fenêtre, lit, lampe, étagère, cadre…), sans encombrer, et jamais dans la zone des sous-titres (loi 2).
+- Fabrication : l'image de départ est composée gratuitement (personnage détouré de sa planche + décor au trait blanc + fond uni), puis animée par l'IA avec la consigne « keep the background as flat solid colour with simple white line-art outlines, do not add details ».
+- Aperçu : `serie-papa/apercu_environnement_chambre.png`.
