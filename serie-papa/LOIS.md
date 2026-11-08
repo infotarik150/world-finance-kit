@@ -25,3 +25,11 @@ Règles données par l'utilisateur, à respecter pour **chaque vidéo**.
 - Juste les éléments utiles pour comprendre le lieu (3 à 6 objets : fenêtre, lit, lampe, étagère, cadre…), sans encombrer, et jamais dans la zone des sous-titres (loi 2).
 - Fabrication : l'image de départ est composée gratuitement (personnage détouré de sa planche + décor au trait blanc + fond uni), puis animée par l'IA avec la consigne « keep the background as flat solid colour with simple white line-art outlines, do not add details ».
 - Aperçu : `serie-papa/apercu_environnement_chambre.png`.
+
+## Loi 4 — Les icônes
+- Des **icônes apparaissent pour montrer une idée** (ampoule = idée, pièces = argent, cœur = amour, horloge = temps, etc.).
+- Même style que le décor (loi 3) : **contours blancs au trait**, simples et modernes, sans remplissage, d'une seule couleur (blanc, ou brun très foncé sur fond clair).
+- Elles **apparaissent au moment exact** où l'idée est dite (calées sur le mot de la voix), avec une petite animation d'entrée (pop, rebond, tracé qui se dessine), puis disparaissent ou se transforment quand l'idée change.
+- Placées **à côté du personnage**, jamais sur son visage ni dans la zone des sous-titres (loi 2) ; 1 à 2 icônes à la fois maximum.
+- Ajoutées au montage par-dessus la vidéo IA (gratuit, précis au mot près).
+- Aperçu : `serie-papa/apercu_icones.png`.
