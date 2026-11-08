@@ -53,14 +53,14 @@ Palette :
 
 Expressions de la planche : rire, surprise (bouche en « o »), réflexion (main au menton), clin d'œil, sourire content, colère, inquiétude, panique, grand rire, clin d'œil complice.
 
-## Version retenue : mélange des deux (style 2D « nouille »)
-Code : `moteur/rig_papa.js` (`makePapa`). Test : `moteur/papa.html` + `moteur/papa_test.js`.
-- **Tête (planche)** : banane rousse, barbe rousse fournie avec moustache, taches de rousseur, lunettes rondes turquoise.
-- **Tenue (texte)** : cardigan beige à boutons bruns, chemise bleu clair, pantalon brun foncé, chaussures en cuir brun.
-- **Accessoires** : montre (poignet gauche), carnet orange et bleu.
-- **Poses** : `stand`, `walk`, `wave`, `think` (poing sur la barbe, carnet), `laugh`, `shrug`, `worried`, `angry`.
+## Version retenue : la planche, en flat design
+Papa reste **exactement le personnage de la planche** (proportions, tenue, couleurs), dessiné en aplats sans contours.
+Cette série n'utilise **pas** le style World Finance : elle a son propre dossier `serie-papa/`.
+- Fonds vifs : orange `#FF9A3C`, rose `#FF8FB8`, bleu ciel `#7FD0F5`, jaune `#FFD43B`.
+- Code : `serie-papa/papa.js` (`makePapa`), `serie-papa/core.js` (fonds), test : `serie-papa/test_5s.js`.
+- Poses : `hips` (mains sur les hanches, comme la planche), `stand`, `wave`, `think`, `laugh`, `surprise`, `wink`, `angry`, `worried`, `shrug`.
 
-Rendu du test (fond crème, 5 s, sans son) :
+Rendu du test (5 s, sans son) :
 ```bash
-cd moteur && PAGE=papa.html THEME=creme node render_par.js /dossier/papa_test.mp4 3
+cd moteur && PAGE=../serie-papa/index.html node render_par.js /dossier/papa_test.mp4 3
 ```
