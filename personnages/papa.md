@@ -53,5 +53,14 @@ Palette :
 
 Expressions de la planche : rire, surprise (bouche en « o »), réflexion (main au menton), clin d'œil, sourire content, colère, inquiétude, panique, grand rire, clin d'œil complice.
 
-## À trancher
-La description écrite (cheveux bruns, lunettes rectangulaires noires, cardigan beige, chemise bleue, pantalon brun, chaussures cuir, carnet et stylo) ne correspond pas à la planche. La planche est retenue en attendant la décision.
+## Version retenue : mélange des deux (style 2D « nouille »)
+Code : `moteur/rig_papa.js` (`makePapa`). Test : `moteur/papa.html` + `moteur/papa_test.js`.
+- **Tête (planche)** : banane rousse, barbe rousse fournie avec moustache, taches de rousseur, lunettes rondes turquoise.
+- **Tenue (texte)** : cardigan beige à boutons bruns, chemise bleu clair, pantalon brun foncé, chaussures en cuir brun.
+- **Accessoires** : montre (poignet gauche), carnet orange et bleu.
+- **Poses** : `stand`, `walk`, `wave`, `think` (poing sur la barbe, carnet), `laugh`, `shrug`, `worried`, `angry`.
+
+Rendu du test (fond crème, 5 s, sans son) :
+```bash
+cd moteur && PAGE=papa.html THEME=creme node render_par.js /dossier/papa_test.mp4 3
+```
