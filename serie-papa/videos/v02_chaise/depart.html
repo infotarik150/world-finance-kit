@@ -1,0 +1,92 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0}.f{position:relative;width:1920px;height:1080px;overflow:hidden}
+svg{position:absolute;inset:0}img{position:absolute}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="wTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E2B07A"/><stop offset="1" stop-color="#B9834F"/></linearGradient>
+  <linearGradient id="wSide" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9C6A3C"/><stop offset="1" stop-color="#7A4F2A"/></linearGradient>
+  <linearGradient id="wLeg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#B98252"/><stop offset="1" stop-color="#7E522C"/></linearGradient>
+  <linearGradient id="wBack" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D8A26C"/><stop offset="1" stop-color="#A9743F"/></linearGradient>
+  <!-- simple modern wooden chair, 3/4 view, origin = centre of the floor contact, ~380 px tall -->
+  <g id="chair">
+    <ellipse cx="0" cy="4" rx="135" ry="16" fill="#000" opacity=".22"/>
+    <rect x="-92" y="-205" width="20" height="208" rx="8" fill="url(#wLeg)"/>
+    <rect x="58" y="-205" width="20" height="200" rx="8" fill="url(#wLeg)" opacity=".9"/>
+    <rect x="-44" y="-150" width="16" height="140" rx="7" fill="url(#wLeg)" opacity=".75"/>
+    <rect x="92" y="-160" width="16" height="148" rx="7" fill="url(#wLeg)" opacity=".75"/>
+    <!-- backrest -->
+    <rect x="-46" y="-400" width="16" height="240" rx="7" fill="url(#wLeg)"/>
+    <rect x="94" y="-392" width="16" height="230" rx="7" fill="url(#wLeg)"/>
+    <path d="M-52 -405 Q30 -430 116 -398 L116 -330 Q30 -360 -52 -338 Z" fill="url(#wBack)"/>
+    <path d="M-52 -338 Q30 -360 116 -330 L116 -318 Q30 -348 -52 -326 Z" fill="#7A4F2A" opacity=".6"/>
+    <!-- seat -->
+    <path d="M-110 -205 L70 -205 L128 -172 L-52 -172 Z" transform="translate(0,-10)" fill="url(#wTop)"/>
+    <path d="M-110 -215 L-52 -182 L-52 -164 L-110 -197 Z" fill="url(#wSide)"/>
+    <path d="M-52 -182 L128 -182 L128 -164 L-52 -164 Z" fill="url(#wSide)"/>
+  </g>
+</defs></svg>
+
+<!-- C1: chair alone, spotlight (scene 1) -->
+<div class="f" id="c1" style="background:#1F2A4F"><svg viewBox="0 0 1920 1080" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round">
+<line x1="0" y1="900" x2="1920" y2="900"/><path d="M900 180 L700 900 M1020 180 L1220 900" opacity=".55"/><path d="M890 175 H1030" />
+<ellipse cx="960" cy="905" rx="270" ry="38" opacity=".55"/>
+<use href="#chair" x="955" y="900" stroke="none"/></svg></div>
+
+<!-- C1b: same chair left displaced (scene 2 end) -->
+<div class="f" id="c1b" style="background:#1F2A4F"><svg viewBox="0 0 1920 1080" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round">
+<line x1="0" y1="900" x2="1920" y2="900"/><rect x="1450" y="380" width="200" height="520" rx="6"/><circle cx="1615" cy="650" r="9" fill="#fff"/>
+<circle cx="420" cy="300" r="70"/><path d="M420 255 V300 L450 320"/>
+<g transform="translate(1010,900) scale(-0.92,1)"><use href="#chair" stroke="none"/></g></svg></div>
+
+<!-- K1: Papa next to the chair in the waiting room (scene 2) -->
+<div class="f" id="k1" style="background:#1F2A4F"><svg viewBox="0 0 1920 1080" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round">
+<line x1="0" y1="900" x2="1920" y2="900"/><rect x="1450" y="380" width="200" height="520" rx="6"/><circle cx="1615" cy="650" r="9" fill="#fff"/>
+<circle cx="420" cy="300" r="70"/><path d="M420 255 V300 L450 320"/>
+<use href="#chair" x="960" y="900" stroke="none"/></svg>
+<img src="cut/papa.png" style="height:640px;left:660px;top:270px"></div>
+
+<!-- K2: Alex next to a displaced chair (scene 3a) -->
+<div class="f" id="k2" style="background:#4B2E83"><svg viewBox="0 0 1920 1080" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round">
+<line x1="0" y1="900" x2="1920" y2="900"/><rect x="250" y="360" width="260" height="200" rx="8"/><line x1="380" y1="360" x2="380" y2="560"/>
+<g transform="translate(1060,900) scale(-0.92,1)"><use href="#chair" stroke="none"/></g></svg>
+<img src="cut/businessman.png" style="height:650px;left:700px;top:262px"></div>
+
+<!-- K3: Adam next to a chair out of position (scene 3b) -->
+<div class="f" id="k3" style="background:#1F2A4F"><svg viewBox="0 0 1920 1080" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round">
+<line x1="0" y1="900" x2="1920" y2="900"/><path d="M1500 900 V620 M1440 620 H1560 L1530 520 H1470 Z"/>
+<g transform="translate(1120,900) scale(-0.92,1)"><use href="#chair" stroke="none"/></g></svg>
+<img src="cut/geek.png" style="height:640px;left:640px;top:270px"></div>
+
+<!-- K4: Luna standing beside her chair (scene 3c) -->
+<div class="f" id="k4" style="background:#4B2E83"><svg viewBox="0 0 1920 1080" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round">
+<line x1="0" y1="900" x2="1920" y2="900"/><circle cx="1500" cy="330" r="70"/><path d="M1500 285 V330 L1530 350"/>
+<g transform="translate(1100,900) scale(-0.92,1)"><use href="#chair" stroke="none"/></g></svg>
+<img src="cut/ado.png" style="height:620px;left:700px;top:290px"></div>
+
+<!-- K5: Dr. Gabriel with three chairs behind him (scene 4) -->
+<div class="f" id="k5" style="background:#161D38"><svg viewBox="0 0 1920 1080" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round">
+<line x1="0" y1="900" x2="1920" y2="900"/>
+<g transform="translate(330,880) scale(-0.62,0.62)"><use href="#chair" stroke="none"/></g>
+<g transform="translate(1420,880) scale(0.62)"><use href="#chair" stroke="none"/></g>
+<g transform="translate(1680,880) scale(-0.62,0.62) skewY(4)"><use href="#chair" stroke="none"/></g></svg>
+<img src="cut/psychologue.png" style="height:650px;left:745px;top:262px"></div>
+
+<!-- K6: ROBI next to a displaced chair (scene 5a) -->
+<div class="f" id="k6" style="background:#1F2A4F"><svg viewBox="0 0 1920 1080" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round">
+<line x1="0" y1="900" x2="1920" y2="900"/>
+<g transform="translate(1120,900) scale(-0.92,1)"><use href="#chair" stroke="none"/></g></svg>
+<img src="cut/robot.png" style="height:560px;left:560px;top:345px"></div>
+
+<!-- K7: chair in place, Max ready to run (scene 5b) -->
+<div class="f" id="k7" style="background:#4B2E83"><svg viewBox="0 0 1920 1080" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round">
+<line x1="0" y1="900" x2="1920" y2="900"/>
+<use href="#chair" x="1080" y="900" stroke="none"/></svg>
+<img src="cut/chien.png" style="height:360px;left:300px;top:545px"></div>
+
+<!-- K8: Papa comes back to the displaced chair (scene 6) -->
+<div class="f" id="k8" style="background:#1F2A4F"><svg viewBox="0 0 1920 1080" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round">
+<line x1="0" y1="900" x2="1920" y2="900"/><rect x="1450" y="380" width="200" height="520" rx="6"/><circle cx="1615" cy="650" r="9" fill="#fff"/>
+<circle cx="420" cy="300" r="70"/><path d="M420 255 V300 L450 320"/>
+<g transform="translate(1060,900) scale(-0.92,1)"><use href="#chair" stroke="none"/></g></svg>
+<img src="cut/papa.png" style="height:640px;left:640px;top:270px"></div>
+</body></html>
