@@ -6,7 +6,7 @@ const FPS = 30;
 async function worker(browser, a, b, seg) {
   const page = await browser.newPage({ viewport: (process.env.FORMAT === 'vertical') ? { width: 1080, height: 1920 } : { width: 1920, height: 1080 } });
   page.on('pageerror', e => console.error('PAGE ERROR', e.message));
-  await page.goto('file://' + path.join(__dirname, process.env.PAGE || 'index.html') + '?theme=' + (process.env.THEME || 'noir') + '&format=' + (process.env.FORMAT || 'horizontal'));
+  await page.goto('file://' + path.join(__dirname, process.env.PAGE || 'index.html') + '?scene=' + (process.env.SCENE || 'test_5s') + '&theme=' + (process.env.THEME || 'noir') + '&format=' + (process.env.FORMAT || 'horizontal'));
   await page.evaluate(() => document.fonts.ready);
   const ff = spawn('ffmpeg', ['-loglevel', 'error', '-y', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'png', '-i', '-',
     '-c:v', 'libx264', '-preset', 'slow', '-crf', '16', '-pix_fmt', 'yuv420p', '-tune', 'grain', '-threads', '1', seg], { stdio: ['pipe', 'inherit', 'inherit'] });
@@ -24,7 +24,7 @@ async function worker(browser, a, b, seg) {
   const N = Number(nw), dir = path.dirname(out);
   const browser = await chromium.launch();
   const probe = await browser.newPage();
-  await probe.goto('file://' + path.join(__dirname, process.env.PAGE || 'index.html') + '?theme=' + (process.env.THEME || 'noir') + '&format=' + (process.env.FORMAT || 'horizontal'));
+  await probe.goto('file://' + path.join(__dirname, process.env.PAGE || 'index.html') + '?scene=' + (process.env.SCENE || 'test_5s') + '&theme=' + (process.env.THEME || 'noir') + '&format=' + (process.env.FORMAT || 'horizontal'));
   const total = Math.round((await probe.evaluate(() => window.DURATION)) * FPS);
   await probe.close();
   const segs = [], jobs = [];
