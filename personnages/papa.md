@@ -26,6 +26,11 @@ Intelligent, observateur, réfléchi, bienveillant, parfois anxieux, sarcastique
 - Émotions : passe du sérieux à l'ironie, de la frustration à la tendresse.
 - Particularité : voix rassurante, intelligente, légèrement fatiguée par les responsabilités.
 
+## Voix retenue
+ElevenLabs **« Miller – Relatable Dad Vibe »** (`voice_id: pCL8Ua4MoAGISUaDmw69`), modèle `eleven_v4`, anglais américain (public USA), 1 seule prise.
+Voix existante (pas de création) : chaleureuse, posée, « papa attachant » avec un humour pince-sans-rire et fatigué.
+Essai : `serie-papa/voix/papa_essai_voix.mp3` (9 s, environ 114 crédits).
+
 ## Apparence — d'après la planche de référence
 Style : personnage 3D cartoon cinématographique, chaleureux, expressif, légèrement caricatural.
 
