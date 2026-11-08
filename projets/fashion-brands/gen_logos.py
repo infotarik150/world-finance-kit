@@ -8,10 +8,10 @@ NAMES = {'nike': 'Nike', 'levis': "Levi's", 'ralphlauren': 'Ralph Lauren', 'tomm
   'hollister': 'Hollister', 'guess': 'Guess', 'champion': 'Champion', 'brooksbrothers': 'Brooks Brothers', 'burberry': 'Burberry', 'barbour': 'Barbour',
   'fredperry': 'Fred Perry', 'chanel': 'Chanel', 'dior': 'Dior', 'lacoste': 'Lacoste', 'adidas': 'Adidas', 'puma': 'Puma', 'hering': 'Hering',
   'osklen': 'Osklen', 'uniqlo': 'Uniqlo', 'commedesgarcons': 'Comme des Garçons', 'gucci': 'Gucci', 'handm': 'H&M'}
-ORIG = {'brooksbrothers', 'columbia', 'gap', 'levis', 'tommyhilfiger', 'oldnavy', 'osklen'}
+ORIG = {'brooksbrothers', 'columbia', 'gap', 'levis', 'tommyhilfiger', 'oldnavy', 'osklen', 'lacoste'}
 RED = {'uniqlo'}
 SYMBOL_ONLY = {'nike', 'adidas', 'puma', 'underarmour', 'newbalance', 'tommyhilfiger'}  # show the name next to the mark
-BIG = {'gucci': 124, 'converse': 112, 'uniqlo': 104, 'handm': 104, 'levis': 100, 'dior': 150, 'oldnavy': 96, 'americaneagle': 150, 'champion': 100, 'lacoste': 100, 'fredperry': 145, 'hering': 96, 'osklen': 135, 'commedesgarcons': 140, 'barbour': 80, 'burberry': 150, 'hollister': 110}
+BIG = {'gucci': 124, 'converse': 112, 'uniqlo': 104, 'handm': 104, 'levis': 100, 'dior': 150, 'oldnavy': 96, 'americaneagle': 150, 'champion': 100, 'lacoste': 130, 'fredperry': 145, 'hering': 96, 'osklen': 135, 'commedesgarcons': 140, 'barbour': 80, 'burberry': 150, 'hollister': 110}
 out = {}
 for k, name in NAMES.items():
     f = os.path.join(SRC, k + '.svg')

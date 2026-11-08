@@ -143,6 +143,12 @@ window.LOGOS = {
   "mode": "white",
   "h": 150
  },
+ "Lacoste": {
+  "file": "lacoste.png",
+  "ar": 2.064,
+  "mode": "orig",
+  "h": 130
+ },
  "Adidas": {
   "file": "adidas.svg",
   "ar": 1.0,
@@ -156,6 +162,12 @@ window.LOGOS = {
   "mode": "white",
   "name": true,
   "h": 80
+ },
+ "Hering": {
+  "file": "hering.png",
+  "ar": 3.168,
+  "mode": "white",
+  "h": 96
  },
  "Osklen": {
   "file": "osklen.png",
