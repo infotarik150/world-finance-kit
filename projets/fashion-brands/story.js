@@ -12,6 +12,8 @@ const BRANDS = [
   ['Burberry', 'gb'], ['Barbour', 'gb'], ['Fred Perry', 'gb'], ['Chanel', 'fr'], ['Dior', 'fr'], ['Lacoste', 'fr'], ['Adidas', 'de'], ['Puma', 'de'],
   ['Hering', 'br'], ['Osklen', 'br'], ['Uniqlo', 'jp'], ['Comme des Garçons', 'jp'], ['Gucci', 'it'], ['H&M', 'se'],
 ];
+// mixed order (seeded shuffle, see ordre.json): no two same non-US countries in a row, max 2 US in a row
+const ORDER = [["Tommy Hilfiger", "us"], ["Comme des Garçons", "jp"], ["Patagonia", "us"], ["Hering", "br"], ["Guess", "us"], ["Columbia", "us"], ["Adidas", "de"], ["Brooks Brothers", "us"], ["New Balance", "us"], ["Lacoste", "fr"], ["Nike", "us"], ["Converse", "us"], ["H&M", "se"], ["Under Armour", "us"], ["Ralph Lauren", "us"], ["Burberry", "gb"], ["Old Navy", "us"], ["The North Face", "us"], ["Puma", "de"], ["Hollister", "us"], ["Calvin Klein", "us"], ["Chanel", "fr"], ["American Eagle", "us"], ["Uniqlo", "jp"], ["Levi's", "us"], ["Dior", "fr"], ["Osklen", "br"], ["Barbour", "gb"], ["Champion", "us"], ["Vans", "us"], ["Fred Perry", "gb"], ["Gap", "us"], ["Gucci", "it"], ["Wrangler", "us"]];
 const COUNTRY = { us: 'United States', gb: 'United Kingdom', fr: 'France', de: 'Germany', br: 'Brazil', jp: 'Japan', it: 'Italy', se: 'Sweden' };
 
 /* ---------------- helpers ---------------- */
@@ -19,6 +21,7 @@ const defs = document.querySelector('#s defs');
 const def = (tag, a) => el(tag, a, defs);
 const ab = def('marker', { id: 'arrowHead', viewBox: '0 0 10 10', refX: 6, refY: 5, markerWidth: 5, markerHeight: 5, orient: 'auto' });
 el('path', { d: 'M0 0 L10 5 L0 10 Z', fill: RED }, ab);
+for (const [id, rgb] of [['white', [1, 1, 1]], ['red', [1, 0, 0]]]) { const f = def('filter', { id: 'logo_' + id }); el('feColorMatrix', { type: 'matrix', values: `0 0 0 0 ${rgb[0]}  0 0 0 0 ${rgb[1]}  0 0 0 0 ${rgb[2]}  0 0 0 1 0` }, f); }
 const fc = def('clipPath', { id: 'flagClip', clipPathUnits: 'objectBoundingBox' });
 el('rect', { x: 0, y: 0, width: 1, height: 1, rx: 0.12, ry: 0.16 }, fc);
 function flag(parent, code, x, y, w = 72) {
@@ -33,8 +36,17 @@ function row(parent, name, code, o = {}) {
   const g = el('g', {}, parent);
   const size = o.size ?? (name.length > 15 ? 54 : 64);
   const bg = el('g', {}, g);
-  const bt = el('text', { x: XB, y: 0, 'dominant-baseline': 'middle', 'font-size': size, 'font-weight': 800, fill: WHITE, class: 'disp', 'letter-spacing': -0.5 }, bg);
-  bt.textContent = name;
+  const L = window.LOGOS && LOGOS[name];
+  let bt, logoW = 0;
+  if (L) {
+    const hL = (o.size ? o.size / 64 : 1) * (L.h ?? 88), w = Math.min((o.size ? o.size / 64 : 1) * (L.maxW ?? 380), hL * L.ar), h = w / L.ar;
+    el('image', Object.assign({ href: `logos/${L.file}`, x: XB, y: -h / 2, width: w, height: h, preserveAspectRatio: 'xMinYMid meet' }, L.mode === 'orig' ? {} : { filter: `url(#logo_${L.mode})` }), bg);
+    logoW = w;
+    if (L.name) { bt = el('text', { x: XB + w + 22, y: 2, 'dominant-baseline': 'middle', 'font-size': 44 * (o.size ? o.size / 64 : 1), 'font-weight': 800, fill: WHITE, class: 'disp' }, bg); bt.textContent = name; }
+  } else {
+    bt = el('text', { x: XB, y: 0, 'dominant-baseline': 'middle', 'font-size': size, 'font-weight': 800, fill: WHITE, class: 'disp', 'letter-spacing': -0.5 }, bg);
+    bt.textContent = name;
+  }
   const line = el('line', { x1: 0, y1: 0, x2: 0, y2: 0, stroke: RED, 'stroke-width': 6, 'stroke-linecap': 'round', 'marker-end': 'url(#arrowHead)' }, g);
   const cg = el('g', {}, g);
   const ct = el('text', { x: XC - 108, y: 2, 'text-anchor': 'end', 'dominant-baseline': 'middle', 'font-size': 40, 'font-weight': 600, fill: GREY }, cg);
@@ -42,8 +54,8 @@ function row(parent, name, code, o = {}) {
   flag(cg, code, XC - 42, 0, 84);
   // measure once fonts are ready to place the arrow between brand and country
   let x1 = 0, x2 = 0, measured = false;
-  const measure = () => { const bw = bt.getComputedTextLength(), cw = ct.getComputedTextLength(); x1 = XB + bw + 26; x2 = XC - 108 - cw - 28; measured = true; };
-  return { g, bg, line, cg, bw: () => { if (!measured) measure(); return bt.getComputedTextLength(); }, set(p) { // p: 0..1 build progress of the row
+  const measure = () => { const bw = (L ? logoW + (bt ? 22 + bt.getComputedTextLength() : 0) : bt.getComputedTextLength()), cw = ct.getComputedTextLength(); x1 = XB + bw + 26; x2 = XC - 108 - cw - 28; measured = true; };
+  return { g, bg, line, cg, bw: () => { if (!measured) measure(); return x1 - XB - 26; }, set(p) { // p: 0..1 build progress of the row
     if (!measured) measure();
     const pb = eOut(clamp(p / 0.35)), pl = eIO(clamp((p - 0.28) / 0.32)), pc = eOut(clamp((p - 0.55) / 0.3));
     bg.setAttribute('transform', `translate(${(-40 * (1 - pb)).toFixed(1)},0)`); bg.setAttribute('opacity', pb.toFixed(3));
@@ -87,12 +99,12 @@ function row(parent, name, code, o = {}) {
 }
 
 /* ======================= MAIN TABLE 6–60 s ======================= */
-const T0 = 6.0, T1 = 60.0, STEP = (T1 - T0 - 0.4) / BRANDS.length; // ≈1.58 s per brand
+const T0 = 6.0, T1 = 60.0, STEP = (T1 - T0 - 0.4) / ORDER.length; // ≈1.58 s per brand
 const PITCH = 176, FOCUS = 1480, V = PITCH / STEP;                   // constant scroll speed
 {
   const tableG = fader(root, t => Math.min(eOut(prog(t, T0 - 0.2, 0.4)), 1 - eIn(prog(t, T1 - 0.1, 0.5))));
   // thin red rule marking where each new line arrives
-  const rows = BRANDS.map(([n, c], i) => ({ i, t: T0 + 0.2 + i * STEP, r: row(tableG, n, c) }));
+  const rows = ORDER.map(([n, c], i) => ({ i, t: T0 + 0.2 + i * STEP, r: row(tableG, n, c) }));
   // separators between countries
   rows.forEach(R => {
     updaters.push(t => {
@@ -105,21 +117,6 @@ const PITCH = 176, FOCUS = 1480, V = PITCH / STEP;                   // constant
       // readable everywhere, slightly dimmed once it has been read, faded at the top edge
       const top = clamp((y - 140) / 160), age = clamp((t - R.t - STEP * 1.2) / 0.6);
       R.r.g.setAttribute('opacity', (top * (1 - 0.35 * age)).toFixed(3));
-    });
-  });
-  // small country counter at the bottom keeps the eye anchored (flag strip of what is coming)
-  const strip = el('g', {}, tableG);
-  const order = ['us', 'gb', 'fr', 'de', 'br', 'jp', 'it', 'se'];
-  const firstIdx = {}; BRANDS.forEach(([, c], i) => { if (!(c in firstIdx)) firstIdx[c] = i; });
-  order.forEach((c, k) => {
-    const x = CX + (k - 3.5) * 104, fgp = el('g', {}, strip);
-    flag(fgp, c, x, 1760, 64);
-    const ul = el('rect', { x: x - 32, y: 1800, width: 64, height: 6, rx: 3, fill: RED }, strip);
-    updaters.push(t => {
-      // active when the current line belongs to that country
-      const cur = clamp(Math.floor((t - T0 - 0.2) / STEP), 0, BRANDS.length - 1), active = BRANDS[cur][1] === c, seen = cur >= firstIdx[c];
-      fgp.setAttribute('opacity', active ? 1 : seen ? 0.55 : 0.22);
-      ul.setAttribute('opacity', active ? 1 : 0);
     });
   });
 }
@@ -152,4 +149,4 @@ function fader(parent, fn) {
   updaters.push(t => { const a = fn(t); if (a <= 0.001) g.setAttribute('display', 'none'); else { g.removeAttribute('display'); g.setAttribute('opacity', a.toFixed(3)); } });
   return g;
 }
-window.READY = Promise.all(['us', 'gb', 'fr', 'de', 'br', 'jp', 'it', 'se'].map(c => new Promise(res => { const i = new Image(); i.onload = i.onerror = res; i.src = `flags/${c}.svg`; })));
+window.READY = Promise.all([...['us', 'gb', 'fr', 'de', 'br', 'jp', 'it', 'se'].map(c => `flags/${c}.svg`), ...Object.values(window.LOGOS || {}).map(l => `logos/${l.file}`)].map(src => new Promise(res => { const i = new Image(); i.onload = i.onerror = res; i.src = src; })));
