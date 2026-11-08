@@ -8,14 +8,22 @@ NAMES = {'nike': 'Nike', 'levis': "Levi's", 'ralphlauren': 'Ralph Lauren', 'tomm
   'hollister': 'Hollister', 'guess': 'Guess', 'champion': 'Champion', 'brooksbrothers': 'Brooks Brothers', 'burberry': 'Burberry', 'barbour': 'Barbour',
   'fredperry': 'Fred Perry', 'chanel': 'Chanel', 'dior': 'Dior', 'lacoste': 'Lacoste', 'adidas': 'Adidas', 'puma': 'Puma', 'hering': 'Hering',
   'osklen': 'Osklen', 'uniqlo': 'Uniqlo', 'commedesgarcons': 'Comme des Garçons', 'gucci': 'Gucci', 'handm': 'H&M'}
-ORIG = {'brooksbrothers', 'columbia', 'gap', 'levis', 'tommyhilfiger', 'oldnavy', 'americaneagle', 'lacoste', 'fredperry', 'burberry', 'champion', 'hollister'}
+ORIG = {'brooksbrothers', 'columbia', 'gap', 'levis', 'tommyhilfiger', 'oldnavy', 'osklen'}
 RED = {'uniqlo'}
 SYMBOL_ONLY = {'nike', 'adidas', 'puma', 'underarmour', 'newbalance', 'tommyhilfiger'}  # show the name next to the mark
-BIG = {'gucci': 124, 'converse': 112, 'uniqlo': 104, 'handm': 104, 'levis': 100, 'dior': 96, 'oldnavy': 100, 'americaneagle': 100, 'champion': 100, 'lacoste': 100, 'fredperry': 104, 'hering': 96, 'osklen': 96, 'commedesgarcons': 100, 'barbour': 100, 'burberry': 96, 'hollister': 100}
+BIG = {'gucci': 124, 'converse': 112, 'uniqlo': 104, 'handm': 104, 'levis': 100, 'dior': 150, 'oldnavy': 96, 'americaneagle': 150, 'champion': 100, 'lacoste': 100, 'fredperry': 145, 'hering': 96, 'osklen': 135, 'commedesgarcons': 140, 'barbour': 80, 'burberry': 150, 'hollister': 110}
 out = {}
 for k, name in NAMES.items():
     f = os.path.join(SRC, k + '.svg')
-    if not os.path.exists(f) or os.path.getsize(f) < 150: continue
+    if not os.path.exists(f) or os.path.getsize(f) < 150:
+        fp = os.path.join(SRC, k + '.png')
+        if not os.path.exists(fp): continue
+        from PIL import Image
+        w, h = Image.open(fp).size
+        shutil.copy(fp, f'logos/{k}.png')
+        out[name] = {'file': f'{k}.png', 'ar': round(w / h, 3), 'mode': 'orig' if k in ORIG else 'white'}
+        if k in BIG: out[name]['h'] = BIG[k]
+        continue
     t = open(f, encoding='utf-8', errors='ignore').read()
     vb = re.search(r'viewBox="\s*([-\d.e]+)[\s,]+([-\d.e]+)[\s,]+([\d.e]+)[\s,]+([\d.e]+)', t)
     if vb: w, h = float(vb.group(3)), float(vb.group(4))

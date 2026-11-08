@@ -80,15 +80,57 @@ window.LOGOS = {
   "ar": 1.0,
   "mode": "orig"
  },
+ "Old Navy": {
+  "file": "oldnavy.png",
+  "ar": 3.077,
+  "mode": "orig",
+  "h": 96
+ },
+ "American Eagle": {
+  "file": "americaneagle.png",
+  "ar": 1.174,
+  "mode": "white",
+  "h": 150
+ },
+ "Hollister": {
+  "file": "hollister.png",
+  "ar": 2.395,
+  "mode": "white",
+  "h": 110
+ },
  "Guess": {
   "file": "guess.svg",
   "ar": 5.65,
   "mode": "white"
  },
+ "Champion": {
+  "file": "champion.png",
+  "ar": 3.67,
+  "mode": "white",
+  "h": 100
+ },
  "Brooks Brothers": {
   "file": "brooksbrothers.svg",
   "ar": 5.033,
   "mode": "orig"
+ },
+ "Burberry": {
+  "file": "burberry.png",
+  "ar": 1.202,
+  "mode": "white",
+  "h": 150
+ },
+ "Barbour": {
+  "file": "barbour.png",
+  "ar": 4.953,
+  "mode": "white",
+  "h": 80
+ },
+ "Fred Perry": {
+  "file": "fredperry.png",
+  "ar": 0.946,
+  "mode": "white",
+  "h": 145
  },
  "Chanel": {
   "file": "chanel.svg",
@@ -99,7 +141,7 @@ window.LOGOS = {
   "file": "dior.svg",
   "ar": 1.0,
   "mode": "white",
-  "h": 96
+  "h": 150
  },
  "Adidas": {
   "file": "adidas.svg",
@@ -115,11 +157,23 @@ window.LOGOS = {
   "name": true,
   "h": 80
  },
+ "Osklen": {
+  "file": "osklen.png",
+  "ar": 1.065,
+  "mode": "orig",
+  "h": 135
+ },
  "Uniqlo": {
   "file": "uniqlo.svg",
   "ar": 1.0,
   "mode": "red",
   "h": 104
+ },
+ "Comme des Garçons": {
+  "file": "commedesgarcons.png",
+  "ar": 1.347,
+  "mode": "white",
+  "h": 140
  },
  "Gucci": {
   "file": "gucci.svg",
