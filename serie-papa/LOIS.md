@@ -12,7 +12,8 @@ Règles données par l'utilisateur, à respecter pour **chaque vidéo**.
 - **Toujours** des sous-titres, mot à mot : **1 mot à la fois, 2 mots maximum** d'un coup, calés sur la voix.
 - **Police** : style de la référence `serie-papa/reference_police_sous_titres.jpg` → police gratuite **Anton** (`serie-papa/polices/Anton-Regular.woff`, licence SIL OFL, usage commercial autorisé), en MAJUSCULES.
 - **Taille moyenne**, bien visible sans envahir l'image (≈ 100 px de haut en 1920×1080).
-- **Contraste** : lettres blanches avec un contour foncé épais et une ombre douce, lisibles sur tous les fonds (clairs comme foncés). Sur un fond très clair (crème, jaune), on peut passer en lettres foncées.
-- **Position** : centré, en haut de l'écran (≈ 60–170 px du haut), pour ne jamais cacher les personnages ni le contenu.
-- Pour garder cette zone libre, les plans sont cadrés avec de l'espace au-dessus de la tête (personnage plus petit dans l'image de départ, et « keep headroom at the top » dans le prompt). Si un gros plan monte trop haut, on décale le sous-titre au cas par cas.
+- **Pas de contour** (ni contour ni effet autour des lettres) : lettres pleines, d'une seule couleur, comme la référence.
+- **Contraste par la couleur** : blanc sur les fonds foncés ou saturés (orange, bleu nuit, violet, vert pistache), brun très foncé `#2A1A10` sur les fonds clairs (crème, jaune, bleu ciel). On choisit la couleur scène par scène pour que le mot se lise bien.
+- **Position** : centré, en haut de l'écran (≈ 50–150 px du haut), pour **ne jamais cacher le visage** des personnages ni le contenu.
+- Pour garder cette zone libre, les plans sont cadrés avec de l'espace au-dessus de la tête (dans l'image de départ, le haut de la tête commence au moins à ≈ 300 px du haut ; « keep empty headroom at the top of the frame » dans le prompt). Si un gros plan monte trop haut, on décale le sous-titre au cas par cas.
 - Aperçu : `serie-papa/apercu_sous_titres.html`.
