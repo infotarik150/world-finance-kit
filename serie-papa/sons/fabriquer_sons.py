@@ -39,3 +39,27 @@ def reson(x, fc, bw):
 woof = reson(src, 700, 250) + 0.6 * reson(src, 1500, 300)
 save('wouf.wav', woof * env)
 print('ok', sorted(os.listdir(out)))
+
+# --- added for video 02 ---
+# low cinematic impact: sub boom + filtered noise burst
+d = 1.6; tt = t(d)
+boom = np.sin(2 * np.pi * (45 + 25 * np.exp(-tt * 6)) * tt) * np.exp(-tt * 2.2)
+nz = lp(rng.standard_normal(len(tt)), 0.05) * np.exp(-tt * 5) * 2
+save('impact.wav', boom + nz)
+# phone notification: two soft sine dings
+d = 0.5; tt = t(d)
+ding = lambda f, s: np.sin(2 * np.pi * f * (tt - s)) * np.exp(-np.clip(tt - s, 0, None) * 9) * (tt >= s)
+save('notification.wav', ding(1320, 0) + 0.8 * ding(1760, 0.12))
+# chair scrape on the floor: rough noise with a wobbling band
+d = 0.55; tt = t(d); n = rng.standard_normal(len(tt))
+a = 0.08 + 0.05 * np.sin(2 * np.pi * 23 * tt)
+sc = (lp(n, a) - lp(n, a * 0.3)) * (1 + 0.6 * np.sin(2 * np.pi * 57 * tt))
+save('chaise.wav', sc * np.sin(np.pi * tt / d) ** 0.7)
+# electronic scan: rising sine sweep with tremolo
+d = 1.0; tt = t(d); f = 600 + 1400 * tt / d
+save('scan.wav', np.sin(2 * np.pi * np.cumsum(f) / SR) * (0.6 + 0.4 * np.sin(2 * np.pi * 18 * tt)) * np.sin(np.pi * tt / d))
+# cartoon boing impact
+d = 0.6; tt = t(d); f = 180 + 120 * np.sin(2 * np.pi * 9 * tt) * np.exp(-tt * 4)
+thud = np.sin(2 * np.pi * 60 * tt) * np.exp(-tt * 30)
+save('boing.wav', np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 5) + thud)
+print('ok v02', sorted(os.listdir(out)))
