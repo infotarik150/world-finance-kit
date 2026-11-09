@@ -28,7 +28,7 @@ wt=lambda word: next(vt(s) for w,s,e in W if w.lower().startswith(word))
 icons=[['eyeoff',wt("nobody's"),12.2,1250,330,'#FFFFFF'],
  ['cross',13.6,16.9,1300,420,'#FFFFFF'],['cross',19.3,22.2,1400,330,'#FFFFFF'],
  ['check',wt('put'),26.2,1500,330,'#FFFFFF'],['cross',28.9,30.2,1400,330,'#FFFFFF'],
- ['check',43.5,45.9,1300,330,'#FFFFFF'],['cross',48.0,50.9,1500,330,'#FFFFFF'],['check',54.5,59.0,1450,400,'#FFFFFF']]
+ ['check',43.5,45.9,1300,330,'#FFFFFF'],['cross',48.0,50.9,1500,330,'#FFFFFF'],['check',54.5,59.0,1330,450,'#FFFFFF']]
 D=64.0
 d={'subs':subs,'big':big,'icons':icons,'duration':D,'pieces':P}
 json.dump(d,open('timeline.json','w'),indent=1); open('timeline.js','w').write('window.TLDATA='+json.dumps(d)+';')
