@@ -88,11 +88,11 @@ def overlay():
 
 def final():
     D = TL['duration']
-    grade = (f"eq=saturation=0.85:contrast=1.08:brightness='-0.015+0.012*sin(t*9)*sin(t*2.3)':eval=frame,"
-             f"vignette=PI/4.5,noise=alls=5:allf=t,fade=t=out:st={D - 1.2:.2f}:d=1.2")
+    grade = (f"eq=saturation=0.88:contrast=1.06:brightness='0.012*sin(t*9)*sin(t*2.3)':eval=frame,"
+             f"vignette=PI/5.5,noise=alls=5:allf=t,fade=t=out:st={D - 1.2:.2f}:d=1.2")
     fc = f'[0:v]{grade}[g];[g][1:v]overlay=0:0:format=auto[v]'
     run(*FF, '-i', f'{B}/video.mp4', '-framerate', str(FPS), '-i', f'{B}/overlay/o_%04d.png', '-i', 'audio/mix.wav',
-        '-filter_complex', fc, '-map', '[v]', '-map', '2:a', '-t', f'{D:.2f}',
+        '-filter_complex', fc, '-map', '[v]', '-map', '2:a', '-af', 'volume=1.7dB,alimiter=limit=0.84:level=false', '-t', f'{D:.2f}',
         '-c:v', 'libx264', '-preset', 'medium', '-b:v', '7M', '-maxrate', '9M', '-bufsize', '18M', '-pix_fmt', 'yuv420p',
         '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', 'v04_maman_episode2.mp4')
 

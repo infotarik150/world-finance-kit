@@ -1,6 +1,6 @@
 # Vidéo 04 — « Mom on the phone », épisode 2 (préparation)
 
-Statut : **rien n'est généré**. Script vérifié, à valider par l'utilisateur avant la voix.
+Statut : **vidéo finale montée** : `v04_maman_episode2.mp4` (85 s, −14 LUFS). Montage : `python3 timeline.py && python3 montage.py all`.
 Référence : vidéo TikTok « Part 2 » (68 s), adaptée à notre style.
 Genre : **scary / suspense** (voir `../../guide/AMBIANCES.md`).
 

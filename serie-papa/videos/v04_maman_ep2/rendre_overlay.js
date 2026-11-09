@@ -5,7 +5,8 @@ const { chromium } = require('playwright'); const path = require('path'); const 
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1920, height: 1080 } });
   await p.goto('file://' + path.join(__dirname, 'overlay.html')); await p.evaluate(() => document.fonts.ready);
   const n = Math.round((await p.evaluate(() => window.TLDATA.duration)) * 30);
-  for (let i = 0; i < n; i++) {
+  const i0 = Number(process.argv[3] || 0);
+  for (let i = i0; i < n; i++) {
     await p.evaluate(t => window.render(t), i / 30);
     await p.screenshot({ path: path.join(out, `o_${String(i).padStart(4, '0')}.png`), omitBackground: true });
   }
