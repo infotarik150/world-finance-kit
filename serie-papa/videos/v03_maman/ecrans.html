@@ -1,0 +1,52 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Anton;src:url(../../polices/Anton-Regular.woff)}
+body{margin:0;font-family:Inter,Arial,sans-serif}.f{position:relative;width:1920px;height:1080px;overflow:hidden}
+svg{position:absolute;inset:0}img{position:absolute}
+.ph{position:absolute;left:670px;top:215px;width:580px;height:900px;border-radius:60px;background:#0E1222;border:8px solid #fff;box-sizing:border-box;overflow:hidden}
+.hd{height:130px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;color:#fff;border-bottom:2px solid #2a3150}
+.av{width:56px;height:56px;border-radius:50%;background:#C94F7C;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:6px}
+.nm{font-size:22px;font-weight:700;margin-bottom:12px}
+.ms{padding:22px 22px 0 22px;display:flex;flex-direction:column;gap:14px}
+.b{max-width:80%;padding:16px 20px;border-radius:24px;font-size:31px;line-height:1.3;color:#fff;background:#2C3354;align-self:flex-start}
+.me{align-self:flex-end;background:#3B82F6}
+.day{align-self:center;color:#8C93B0;font-size:21px}
+.hl{outline:5px solid #FFD43B;outline-offset:3px}
+.typo{text-decoration:underline wavy #FF6B6B 3px}
+.photo{width:340px;height:440px;border-radius:18px;background:#1F2A4F;position:relative;overflow:hidden;align-self:flex-start;border:3px solid #fff}
+</style></head><body>
+<!-- E1: new message from Mom -->
+<div class="f" id="e1" style="background:#4B2E83">
+<div class="ph"><div class="hd"><div class="av">M</div><div class="nm">Mom</div></div>
+<div class="ms"><div class="day">Yesterday</div>
+<div class="b">omw home luv u</div><div class="b">dont forgt ur lunch</div><div class="b me">ok mom</div><div class="b">proud of u kidddo</div>
+<div class="day">Today 3:07 AM</div>
+<div class="b">I'm at work. Someone is in the house. Hide.</div></div></div></div>
+<!-- E2: typos vs perfect -->
+<div class="f" id="e2" style="background:#4B2E83">
+<div class="ph"><div class="hd"><div class="av">M</div><div class="nm">Mom</div></div>
+<div class="ms"><div class="day">Yesterday</div>
+<div class="b"><span class="typo">omw</span> home <span class="typo">luv</span> u</div><div class="b"><span class="typo">dont forgt</span> ur lunch</div><div class="b me">ok mom</div><div class="b">proud of u <span class="typo">kidddo</span></div>
+<div class="day">Today 3:07 AM</div>
+<div class="b hl">I'm at work. Someone is in the house. Hide.</div></div></div></div>
+<!-- E3: don't go down -->
+<div class="f" id="e3" style="background:#4B2E83">
+<div class="ph"><div class="hd"><div class="av">M</div><div class="nm">Mom</div></div>
+<div class="ms"><div class="b me">ok mom</div><div class="b">proud of u kidddo</div><div class="day">Today 3:07 AM</div>
+<div class="b">I'm at work. Someone is in the house. Hide.</div><div class="day">3:09 AM</div>
+<div class="b">Don't go down those stairs.</div></div></div></div>
+<!-- E4: the photo -->
+<div class="f" id="e4" style="background:#4B2E83">
+<div class="ph"><div class="hd"><div class="av">M</div><div class="nm">Mom</div></div>
+<div class="ms"><div class="b">Don't go down those stairs.</div><div class="day">3:10 AM</div>
+<div class="photo"><svg viewBox="0 0 300 400" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><line x1="0" y1="330" x2="170" y2="330"/><path d="M170 330 H190 V350 H210 V370 H230 V390 H250 V400"/><path d="M165 270 L300 380"/></svg>
+<img src="cut/luna_dos.png" style="height:250px;left:70px;top:85px"></div></div></div></div>
+<!-- E5: mom intro, front view, works nights -->
+<div class="f" id="e5" style="background:#FC8F30"><svg viewBox="0 0 1920 1080" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<line x1="0" y1="930" x2="1920" y2="930"/>
+<rect x="1240" y="380" width="380" height="550" rx="8"/><path d="M1400 470 H1460 V530 H1520 V590 H1460 V650 H1400 V590 H1340 V530 H1400 Z"/>
+<rect x="1280" y="700" width="70" height="90"/><rect x="1510" y="700" width="70" height="90"/>
+</svg>
+<img src="cut/sophie.png" style="height:640px;left:640px;top:290px"></div>
+<!-- E6: final split -->
+<div class="f" id="e6" style="background:#1F2A4F"></div>
+</body></html>

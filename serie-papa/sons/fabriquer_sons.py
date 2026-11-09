@@ -63,3 +63,19 @@ d = 0.6; tt = t(d); f = 180 + 120 * np.sin(2 * np.pi * 9 * tt) * np.exp(-tt * 4)
 thud = np.sin(2 * np.pi * 60 * tt) * np.exp(-tt * 30)
 save('boing.wav', np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 5) + thud)
 print('ok v02', sorted(os.listdir(out)))
+
+# --- added for video 03 ---
+# phone vibration: two short low buzz bursts
+d = 0.9; tt = t(d)
+env = ((tt < 0.32) | ((tt > 0.48) & (tt < 0.8))).astype(float)
+env = lp(env, 0.01)
+buzz = np.sign(np.sin(2 * np.pi * 165 * tt)) * 0.5 + np.sin(2 * np.pi * 82 * tt)
+save('vibration.wav', lp(buzz, 0.25) * env)
+# frying pan sizzle: crackly high noise with random pops, 4 s loopable
+d = 4.0; tt = t(d); n = rng.standard_normal(len(tt))
+hiss = n - lp(n, 0.35)
+pops = (rng.random(len(tt)) > 0.9993).astype(float)
+pops = np.convolve(pops, np.exp(-np.arange(300) / 40.0), mode='same') * rng.standard_normal(len(tt))
+amp = 0.6 + 0.4 * lp(np.abs(rng.standard_normal(len(tt))), 0.0005) * 3
+save('poele.wav', (0.35 * hiss + 0.8 * pops) * np.clip(amp, 0, 1.2))
+print('ok v03')

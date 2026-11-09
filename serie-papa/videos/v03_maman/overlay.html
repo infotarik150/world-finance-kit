@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+@font-face { font-family: Anton; src: url(../../polices/Anton-Regular.woff) format('woff'); }
+html, body { margin: 0; background: transparent; }
+#f { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+#st { position: absolute; left: 0; right: 0; top: 50px; text-align: center; font-family: Anton; font-size: 104px; line-height: 1.1; letter-spacing: 2px; }
+svg { position: absolute; inset: 0; }
+.bg { position: absolute; transform: translate(-50%,-50%); font-family: Anton; color: #fff; white-space: nowrap; letter-spacing: 3px; }
+</style></head><body>
+<div id="f"><svg id="ic" viewBox="0 0 1920 1080"></svg><div id="big"></div><div id="st"></div></div>
+<script src="timeline.js"></script>
+<script>
+// Transparent overlay: word-by-word subtitles (law 2) and white line-art icons (law 4). window.render(t) draws one frame.
+const ICON = {
+  question: '<path d="M-38 -40 C-38 -85 38 -85 38 -40 C38 -10 0 -5 0 25 V35"/><circle cx="0" cy="75" r="6" fill="currentColor"/>',
+  clock: '<circle r="70"/><path d="M0 -45 V0 L32 22"/><path d="M-70 -95 L-95 -70 M70 -95 L95 -70"/>',
+  calendar: '<rect x="-70" y="-60" width="140" height="130" rx="12"/><path d="M-70 -25 H70 M-35 -78 V-45 M35 -78 V-45"/><path d="M-32 22 L-8 45 L35 -2"/>',
+  arrow: '<path d="M-80 60 L-25 5 L10 35 L75 -35"/><path d="M35 -38 H78 V5"/>',
+  eyeoff: '<path d="M-80 0 C-45 -50 45 -50 80 0 C45 50 -45 50 -80 0 Z"/><circle r="20"/><path d="M-70 -55 L70 55"/>',
+  moon: '<path d="M10 -70 A70 70 0 1 0 60 40 A55 55 0 1 1 10 -70 Z"/>',
+  lock: '<rect x="-55" y="-10" width="110" height="90" rx="14"/><path d="M-32 -10 V-40 C-32 -80 32 -80 32 -40 V-10"/><circle cx="0" cy="32" r="10"/>',
+  cross: '<circle r="70"/><path d="M-28 -28 L28 28 M28 -28 L-28 28"/>',
+  check: '<circle r="70"/><path d="M-32 2 L-8 26 L35 -22"/>',
+  heart: '<path d="M0 60 C-90 5 -75 -65 -25 -60 C-10 -58 0 -45 0 -35 C0 -45 10 -58 25 -60 C75 -65 90 5 0 60 Z"/>',
+};
+const ease = x => 1 + 2.7 * Math.pow(x - 1, 3) + 1.7 * Math.pow(x - 1, 2);   // back-out
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const TL = window.TLDATA;
+window.render = t => {
+  const st = document.getElementById('st'), ic = document.getElementById('ic');
+  const s = TL.subs.find(x => t >= x[1] && t < x[2]);
+  if (s) {
+    const p = cl((t - s[1]) / 0.09);
+    st.textContent = s[0]; st.style.color = s[3];
+    st.style.transform = `scale(${0.88 + 0.12 * ease(p)})`; st.style.opacity = p;
+  } else st.textContent = '';
+  let html = '';
+  for (const [name, a, b, x, y, col] of TL.icons) {
+    if (t < a || t > b + 0.25) continue;
+    const pin = cl((t - a) / 0.35), pout = cl((t - b) / 0.25);
+    const sc = Math.max(0, ease(pin)) * (1 - 0.3 * pout), op = Math.min(1, pin * 3) * (1 - pout);
+    const bob = 6 * Math.sin((t - a) * 3);
+    html += `<g transform="translate(${x},${y + bob}) scale(${sc})" opacity="${op}" fill="none" stroke="${col}" color="${col}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">${ICON[name]}</g>`;
+  }
+  ic.innerHTML = html;
+  let bh = '';
+  for (const [txt, a, b, x, y, size] of TL.big) {
+    if (t < a || t > b + 0.3) continue;
+    const pin = cl((t - a) / 0.5), pout = cl((t - b) / 0.3);
+    bh += `<div class="bg" style="left:${x}px;top:${y}px;font-size:${size}px;opacity:${pin * (1 - pout)};transform:translate(-50%,-50%) scale(${0.92 + 0.08 * pin})">${txt}</div>`;
+  }
+  document.getElementById('big').innerHTML = bh;
+};
+</script></body></html>
