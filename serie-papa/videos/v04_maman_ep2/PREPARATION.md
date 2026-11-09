@@ -130,3 +130,6 @@ Total : **8 plans Kling ≈ 17 000 crédits (≈ 3,10 $)**. On commence par **P3
 - Grattements sur la porte (son à fabriquer avec `sons/fabriquer_sons.py`), grésillement de la poêle au loin.
 - Étalonnage désaturé, vignettage, léger grain, lumière sous la porte qui vacille.
 - Fin : LEAVE / STAY en cartes, puis fondu au noir.
+
+## 4. Décisions de montage
+- **P3** (`plans/p3.mp4`, Kling, 2 121 crédits) : **gardé en entier, sans coupe**, à la demande de l'utilisateur (y compris le passage où le visage redevient presque normal pendant la course). Sous-titres en bas sur ce plan (la tête est dans la zone du haut).
