@@ -135,3 +135,5 @@ Total : **8 plans Kling ≈ 17 000 crédits (≈ 3,10 $)**. On commence par **P3
 - **P3** (`plans/p3.mp4`, Kling, 2 121 crédits) : **gardé en entier, sans coupe**, à la demande de l'utilisateur (y compris le passage où le visage redevient presque normal pendant la course). Sous-titres en bas sur ce plan (la tête est dans la zone du haut).
 - **Fin de P3** : la dernière demi-seconde (cuisine vide) est remplacée par un **noir + impact** (validé par l'utilisateur), pour ne pas faire croire qu'elle a disparu.
 - **P5** : image de départ fournie par l'utilisateur (`depart_p5.png`). La lampe de chevet est allumée : garder cette lampe allumée dans P6, P8 et P9 pour la continuité.
+- **P5** (`plans/p5.mp4`) : Kling a fait plusieurs mini-plans (porte qui se rouvre, Luna qui disparaît). Montage validé : **0–0,7 s** (main + silhouette au bout du couloir) puis coupe à **3,7–5 s** (porte fermée, chambre immobile) avec un bruit de porte qui claque.
+- **P6** : prompt donné à l'utilisateur, même chambre que P5 (porte bleu nuit à bord gris, poignée ronde argentée, lampe de chevet allumée, fenêtre avec la lune).
