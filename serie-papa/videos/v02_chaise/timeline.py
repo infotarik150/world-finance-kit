@@ -25,7 +25,10 @@ big=[['THE CHAIR TEST',0.5,6.9,960,300,150],
  ['NO CONSEQUENCES',vt(30.96),40.6,1580,560,80],
  ['WHAT WOULD THEY LEARN ABOUT YOU?',59.2,63.6,960,105,100]]
 wt=lambda word: next(vt(s) for w,s,e in W if w.lower().startswith(word))
-icons=[['eyeoff',wt("nobody's"),12.2,1250,330,'#FFFFFF'],['check',wt('put'),26.2,1500,330,'#FFFFFF']]
+icons=[['eyeoff',wt("nobody's"),12.2,1250,330,'#FFFFFF'],
+ ['cross',13.6,16.9,1300,420,'#FFFFFF'],['cross',19.3,22.2,1400,330,'#FFFFFF'],
+ ['check',wt('put'),26.2,1500,330,'#FFFFFF'],['cross',28.9,30.2,1400,330,'#FFFFFF'],
+ ['check',43.5,45.9,1300,330,'#FFFFFF'],['cross',48.0,50.9,1500,330,'#FFFFFF'],['check',54.5,59.0,1450,400,'#FFFFFF']]
 D=64.0
 d={'subs':subs,'big':big,'icons':icons,'duration':D,'pieces':P}
 json.dump(d,open('timeline.json','w'),indent=1); open('timeline.js','w').write('window.TLDATA='+json.dumps(d)+';')
