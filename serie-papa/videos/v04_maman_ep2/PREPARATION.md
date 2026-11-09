@@ -12,12 +12,13 @@ Les balises entre crochets sont des **consignes de jeu pour la voix** (ElevenLab
 
 ### Narrateur — Frank (`AzNAdnjXVngDJxC7HGpY`)
 ```
-[calm, low voice] You chose the phone.
+[calm, low voice] Last time, you chose to trust Mom on the phone.
 
 [slowly, tense] She turns around. [pause] Slowly.
 [whispering, horrified] It's Mom's face. [pause] Almost.
 [voice trembling] Stretched long. The eyes, too far apart.
 [pause] And her mouth [pause] hangs open. [whispering] Far too long.
+[whispering, terrified] That is not Mom.
 
 [fast, breathless] Then it runs. You run too. Your room. The door. [sharp] You slam it shut.
 [pause] [whispering] Silence.
@@ -25,14 +26,12 @@ Les balises entre crochets sont des **consignes de jeu pour la voix** (ElevenLab
 [slowly, tense] The doorknob turns. [pause] Slowly.
 [pause] Then [pause] scratching.
 [whispering] Behind you, the closet door creaks.
-[tense, short] A hand. [pause] A blue sleeve. [pause] A hospital badge.
+[tense, short] A hand. [pause] A blue sleeve. [pause] Mom's hospital badge.
 
 [softly, emotional] Her heart is pounding.
 [whispering] Outside, the scratching stops.
 [tense] Downstairs, the pan starts hissing again.
-[pause] [whispering, terrified] But under your door, [pause] the shadow hasn't moved.
 
-[slow, low and serious] Do you leave the closet, [pause] or do you stay?
 ```
 
 ### Fausse maman (dans la cuisine, puis derrière la porte) — Sophie, voix Marie (`Bv9P233zucGXSrswwl5g`)
@@ -54,13 +53,25 @@ Paniquée, à bout de souffle, très émotive, tout en chuchotant.
 [whispering] Shh. [pause] [trembling, emotional] It's me. It's really me.
 [whispering, scared, near tears] I came home early. [pause] It was already in the kitchen.
 
-[very quiet whisper, urgent] It's gone. [pause] Now.
+[very quiet whisper, relieved] Listen. [pause] It went back to the kitchen.
+[urgent whisper] It's gone. [pause] Now.
+```
+Puis le narrateur (Frank), pour la chute :
+```
+[pause] [whispering, terrified] But under your door, [pause] the shadow hasn't moved.
+[slow, low and serious] So what's in the kitchen? [pause] Do you leave the closet, [pause] or do you stay?
 ```
 
-Durée estimée : ≈ 70 s. Voix ≈ 1 100 crédits (≈ 15 crédits / s), une seule prise par voix.
+Durée estimée : ≈ 75 s. Voix ≈ 1 100 crédits (≈ 15 crédits / s), une seule prise par voix.
 
 ### Sous-titres
 Anton, blanc, 1 à 2 mots, en haut de l'écran. Mots clés en rouge `#FF3B3B` : PHONE, MOM'S, LONG, APART, OPEN, RUN, DOOR, SWEETIE, MOM, PANCAKES, DOORKNOB, SCRATCHING, CLOSET, BLUE, BADGE, REALLY, ALREADY, SHADOW, GONE, NOW, LEAVE, STAY.
+
+### Clarté (demande de l'utilisateur : l'histoire doit se comprendre sans effort)
+- Début : « PART 2 » à l'écran + rappel clair (« Last time, you chose to trust Mom on the phone ») et 2 s de l'épisode 1.
+- On dit clairement « That is not Mom. » au moment où elle se retourne : on passe de « she » à « it » sans ambiguïté.
+- « Mom's hospital badge » : on comprend tout de suite que c'est la vraie Maman (elle travaille de nuit).
+- La chute est expliquée pas à pas : Maman croit que la chose est retournée à la cuisine (la poêle) → mais l'ombre sous la porte n'a pas bougé → donc il y en a une deuxième. Question finale simple : LEAVE ou STAY.
 
 ## 2. Plans et images de départ (préparées par l'utilisateur)
 
