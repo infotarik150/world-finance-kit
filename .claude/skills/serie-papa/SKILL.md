@@ -1,5 +1,6 @@
 ---
 name: serie-papa
+disable-model-invocation: true
 description: Créer une vidéo de la série « Papa » (personnages 3D Papa, le Sportif, Sophie, Alex, Victoria, Dr. Gabriel, Luna, Léo, Adam, ROBI, Max ; décor au trait blanc sur fond uni ; sous-titres Anton mot à mot ; voix ElevenLabs ; plans Kling). À utiliser dès que l'utilisateur donne un scénario, une idée ou une vidéo de référence à adapter avec ces personnages. Remplace le style « World Finance » pour cette série.
 ---
 
