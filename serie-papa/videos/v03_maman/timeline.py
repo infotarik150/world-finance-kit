@@ -33,10 +33,13 @@ for s_ in subs:
     if s_[0] in ('A .M.','A.M.'): fixed[-1][2]=s_[2]; continue
     fixed.append(s_)
 subs=fixed
+RED=('HIDE','PASSWORD','PERFECT','BLUEBERRY','BEHIND','TRUST','NOBODY ELSE')
+for s_ in subs:
+    if any(w in s_[0] for w in RED): s_[3]='#FF3B3B'
 D=76.5
-big=[['MOM IN THE KITCHEN',71.7,76.2,480,1010,64],['MOM ON THE PHONE',72.8,76.2,1440,1010,64]]
+big=[['MOM IN THE KITCHEN',71.0,76.2,1420,580,58],['MOM ON THE PHONE',72.2,76.2,600,350,58]]
 icons=[['moon',4.8,12.0,1000,300,'#FFFFFF'],
-       ['lock',37.4,40.2,1300,330,'#FFFFFF']]
+       ['lock',37.4,39.4,1300,330,'#FFFFFF']]
 d={'subs':subs,'big':big,'icons':icons,'duration':D,'audio':A}
 json.dump(d,open('timeline.json','w'),indent=1); open('timeline.js','w').write('window.TLDATA='+json.dumps(d)+';')
 print(len(subs)); [print(s) for s in subs[:6]]; print(icons)

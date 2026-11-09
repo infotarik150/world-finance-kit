@@ -79,3 +79,16 @@ pops = np.convolve(pops, np.exp(-np.arange(300) / 40.0), mode='same') * rng.stan
 amp = 0.6 + 0.4 * lp(np.abs(rng.standard_normal(len(tt))), 0.0005) * 3
 save('poele.wav', (0.35 * hiss + 0.8 * pops) * np.clip(amp, 0, 1.2))
 print('ok v03')
+
+# --- added for video 03 (scary version) ---
+# dark drone: detuned low sines + filtered noise, slow swell, 20 s loopable
+d = 20.0; tt = t(d)
+dr = sum(np.sin(2 * np.pi * f * tt + p) for f, p in ((41.2, 0), (41.9, 1.0), (61.7, 2.0), (82.4, 0.5)))
+dr += 0.6 * lp(rng.standard_normal(len(tt)), 0.004)
+dr *= 0.75 + 0.25 * np.sin(2 * np.pi * tt / d)
+save('drone.wav', dr)
+# heartbeat: lub-dub thumps, one beat (~0.9 s)
+d = 0.9; tt = t(d)
+thump = lambda s0, f, g: g * np.sin(2 * np.pi * f * np.clip(tt - s0, 0, None)) * np.exp(-np.clip(tt - s0, 0, None) * 28) * (tt >= s0)
+save('coeur.wav', thump(0, 55, 1.0) + thump(0.18, 48, 0.7))
+print('ok scary')

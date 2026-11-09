@@ -208,7 +208,7 @@
    "HIDE!",
    26.54,
    27.08,
-   "#FFFFFF"
+   "#FF3B3B"
   ],
   [
    "MOM ALWAYS",
@@ -250,7 +250,7 @@
    "IS PERFECT.",
    31.56,
    32.7,
-   "#FFFFFF"
+   "#FF3B3B"
   ],
   [
    "EVERY PERIOD",
@@ -310,7 +310,7 @@
    "THE PASSWORD.",
    38.9,
    39.76,
-   "#FFFFFF"
+   "#FF3B3B"
   ],
   [
    "MOM,",
@@ -328,7 +328,7 @@
    "PASSWORD?",
    41.76,
    42.72,
-   "#FFFFFF"
+   "#FF3B3B"
   ],
   [
    "THE HUMMING",
@@ -346,7 +346,7 @@
    "BLUEBERRY.",
    45.1,
    45.86,
-   "#FFFFFF"
+   "#FF3B3B"
   ],
   [
    "THAT'S RIGHT.",
@@ -358,7 +358,7 @@
    "NOBODY ELSE",
    48.22,
    48.6,
-   "#FFFFFF"
+   "#FF3B3B"
   ],
   [
    "KNOWS IT.",
@@ -508,7 +508,7 @@
    "RIGHT BEHIND",
    67.56,
    68.14,
-   "#FFFFFF"
+   "#FF3B3B"
   ],
   [
    "YOU.",
@@ -532,7 +532,7 @@
    "YOU TRUST?",
    70.62,
    71.56,
-   "#FFFFFF"
+   "#FF3B3B"
   ],
   [
    "MOM IN",
@@ -568,19 +568,19 @@
  "big": [
   [
    "MOM IN THE KITCHEN",
-   71.7,
+   71.0,
    76.2,
-   480,
-   1010,
-   64
+   1420,
+   580,
+   58
   ],
   [
    "MOM ON THE PHONE",
-   72.8,
+   72.2,
    76.2,
-   1440,
-   1010,
-   64
+   600,
+   350,
+   58
   ]
  ],
  "icons": [
@@ -595,7 +595,7 @@
   [
    "lock",
    37.4,
-   40.2,
+   39.4,
    1300,
    330,
    "#FFFFFF"
