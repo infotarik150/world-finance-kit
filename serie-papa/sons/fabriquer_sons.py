@@ -92,3 +92,25 @@ d = 0.9; tt = t(d)
 thump = lambda s0, f, g: g * np.sin(2 * np.pi * f * np.clip(tt - s0, 0, None)) * np.exp(-np.clip(tt - s0, 0, None) * 28) * (tt >= s0)
 save('coeur.wav', thump(0, 55, 1.0) + thump(0.18, 48, 0.7))
 print('ok scary')
+
+# --- added for video 04 (episode 2) ---
+# door slam: wooden knock + low thump + short rattle
+d = 0.9; tt = t(d); n = rng.standard_normal(len(tt))
+knock = reson(n * np.exp(-tt * 60), 180, 60) * 0.02 + reson(n * np.exp(-tt * 80), 420, 120) * 0.01
+thump = np.sin(2 * np.pi * 55 * tt) * np.exp(-tt * 9)
+rattle = (n - lp(n, 0.3)) * np.exp(-np.clip(tt - 0.05, 0, None) * 25) * (tt > 0.05) * 0.3
+save('porte.wav', knock + thump + rattle)
+# doorknob turning and stopping (locked): metallic clicks + short jiggles
+d = 1.2; tt = t(d); n = rng.standard_normal(len(tt))
+def click(s0, g):
+    e = np.exp(-np.clip(tt - s0, 0, None) * 120) * (tt >= s0)
+    return g * reson(n * e, 2600, 300) * 0.01
+jig = sum(click(s, 0.6) for s in (0.25, 0.32, 0.39, 0.46))
+save('poignee.wav', click(0.0, 1.0) + jig + click(0.75, 1.0) + click(0.82, 0.8))
+# scratching on wood: 4 rough strokes of band-passed noise
+d = 2.4; tt = t(d); n = rng.standard_normal(len(tt))
+bp = lp(n, 0.25) - lp(n, 0.06)
+strokes = sum(np.sin(np.pi * np.clip((tt - s) / 0.42, 0, 1)) ** 0.6 * ((tt >= s) & (tt <= s + 0.42)) for s in (0.0, 0.55, 1.15, 1.75))
+grain = 0.6 + 0.4 * np.sign(np.sin(2 * np.pi * 38 * tt))
+save('grattement.wav', bp * strokes * grain)
+print('ok v04')

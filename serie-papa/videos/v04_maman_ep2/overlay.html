@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+@font-face { font-family: Anton; src: url(../../polices/Anton-Regular.woff) format('woff'); }
+html, body { margin: 0; background: transparent; }
+#f { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+#st { position: absolute; left: 0; right: 0; text-align: center; font-family: Anton; font-size: 104px; line-height: 1.1; letter-spacing: 2px; }
+.tag { position: absolute; left: 70px; top: 60px; font-family: Anton; font-size: 46px; letter-spacing: 4px; color: #FF3B3B; border: 3px solid #FF3B3B; padding: 2px 16px; }
+.card { position: absolute; top: 470px; font-family: Anton; font-size: 120px; letter-spacing: 6px; padding: 6px 48px; transform-origin: 50% 50%; }
+.leave { left: 470px; background: #FFFFFF; color: #0B1020; }
+.stay { left: 1150px; background: #FF3B3B; color: #FFFFFF; }
+</style></head><body>
+<div id="f"><div id="big"></div><div id="st"></div></div>
+<script src="timeline.js"></script>
+<script>
+// Transparent overlay: word-by-word subtitles (law 2), "PART 2" tag, LEAVE / STAY cards. window.render(t) draws one frame.
+const ease = x => 1 + 2.7 * Math.pow(x - 1, 3) + 1.7 * Math.pow(x - 1, 2);   // back-out
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const TL = window.TLDATA;
+window.render = t => {
+  const st = document.getElementById('st');
+  const s = TL.subs.find(x => t >= x[1] && t < x[2]);
+  if (s) {
+    const p = cl((t - s[1]) / 0.09);
+    st.textContent = s[0]; st.style.color = s[3];
+    st.style.top = s[4] === 'bottom' ? '880px' : '50px';
+    st.style.transform = `scale(${0.88 + 0.12 * ease(p)})`; st.style.opacity = p;
+  } else st.textContent = '';
+  let bh = '';
+  for (const [txt, a, b, kind] of TL.big) {
+    if (t < a || t > b + 0.3) continue;
+    const pin = cl((t - a) / 0.35), pout = cl((t - b) / 0.3), op = Math.min(1, pin * 2) * (1 - pout);
+    if (kind === 'tag') bh += `<div class="tag" style="opacity:${op}">${txt}</div>`;
+    else bh += `<div class="card ${kind}" style="opacity:${op};transform:scale(${0.7 + 0.3 * ease(pin)})">${txt}</div>`;
+  }
+  document.getElementById('big').innerHTML = bh;
+};
+</script></body></html>

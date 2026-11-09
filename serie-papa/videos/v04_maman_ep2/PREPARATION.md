@@ -14,7 +14,7 @@ Les balises entre crochets sont des **consignes de jeu pour la voix** (ElevenLab
 ```
 [calm, low voice] Last time, you chose to trust Mom on the phone.
 
-[slowly, tense] She turns around. [pause] Slowly.
+[slowly, tense] She looks up at you. [pause] Slowly.
 [whispering, horrified] It's Mom's face. [pause] Almost.
 [voice trembling] Stretched long. The eyes, too far apart.
 [pause] And her mouth [pause] hangs open. [whispering] Far too long.
@@ -140,4 +140,4 @@ Total : **8 plans Kling ≈ 17 000 crédits (≈ 3,10 $)**. On commence par **P3
 - **P6** (`plans/p6.mp4`) : la poignée ne tourne pas et la porte s'entrouvre à partir de 2 s (contraire à l'histoire). Montage validé : **0–1,9 s** seulement (porte fermée, pieds, lumière qui vacille), zoom lent sur la poignée + **son de poignée qui tourne et bute** (porte fermée à clé).
 - **P7** refait (`plans/p7.mp4`, prompt précis) : la main fait signe deux fois, caméra fixe, **utilisable de 0 à 3,7 s** ; à la fin, la main rentre et la porte se referme encore (coupée au montage). Ancienne version : `plans/p7_v1.mp4`.
 - **P8** (`plans/p8.mp4`) : doigt sur la bouche, regard vers la porte, larme. **Utilisable de 0 à 4,2 s** (ensuite le doigt descend). Sous-titres en bas sur ce plan.
-- **P9** (`plans/p9.mp4`, image `depart_p9_v2.png`) : les ombres des pieds sont nettes de 0 à 2 s, puis **s'effacent** (contraire à la chute), et Maman tourne la tête à la fin. Montage proposé : **0–2 s**, puis **image figée** (image de départ en pleine résolution) avec zoom lent vers la porte et lumière qui vacille ajoutée au montage, pour « the shadow hasn't moved » et LEAVE / STAY.
+- **P9** : décision de l'utilisateur : **gardé tel quel** (pas d'image figée), on jugera au montage. Détail : les ombres des pieds sont nettes de 0 à 2 s, puis **s'effacent** (contraire à la chute), et Maman tourne la tête à la fin. Montage proposé : **0–2 s**, puis **image figée** (image de départ en pleine résolution) avec zoom lent vers la porte et lumière qui vacille ajoutée au montage, pour « the shadow hasn't moved » et LEAVE / STAY.
