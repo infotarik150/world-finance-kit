@@ -40,6 +40,14 @@ D=76.5
 big=[['MOM IN THE KITCHEN',71.0,76.2,1420,580,58],['MOM ON THE PHONE',72.2,76.2,600,350,58]]
 icons=[['moon',4.8,12.0,1000,300,'#FFFFFF'],
        ['lock',37.4,39.4,1300,330,'#FFFFFF']]
-d={'subs':subs,'big':big,'icons':icons,'duration':D,'audio':A}
+HIDE="I'm at work. Someone is in the house. Hide."
+DONT="Don't go down those stairs."
+OLD=[['omw home luv u',[[0,3],[9,12]]],['dont forgt ur lunch',[[0,4],[5,10]]],['proud of u kidddo',[[11,17]]]]
+# notification cards beside the phone: [t0, t1, kind, payload]
+cards=[[22.0,24.0,'typing',None],[24.0,27.6,'msg',{'text':HIDE,'time':'3:07 AM'}],
+       [27.6,34.6,'compare',{'old':OLD,'new':HIDE,'typo_t':28.4,'perfect_t':31.0}],
+       [57.0,57.9,'typing',None],[57.9,62.3,'msg',{'text':DONT,'time':'3:09 AM'}],
+       [62.4,63.1,'typing',None],[63.1,68.5,'photo',{'time':'3:10 AM'}]]
+d={'cards':cards,'subs':subs,'big':big,'icons':icons,'duration':D,'audio':A}
 json.dump(d,open('timeline.json','w'),indent=1); open('timeline.js','w').write('window.TLDATA='+json.dumps(d)+';')
 print(len(subs)); [print(s) for s in subs[:6]]; print(icons)

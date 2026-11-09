@@ -5,9 +5,20 @@ html, body { margin: 0; background: transparent; }
 #f { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
 #st { position: absolute; left: 0; right: 0; top: 50px; text-align: center; font-family: Anton; font-size: 104px; line-height: 1.1; letter-spacing: 2px; }
 svg { position: absolute; inset: 0; }
+#cards { position: absolute; inset: 0; }
+.card { position: absolute; left: 1290px; width: 520px; background: rgba(28,32,52,.94); border-radius: 30px; box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 0 2px rgba(255,255,255,.08); color: #fff; font-family: Inter, Arial, sans-serif; padding: 22px 26px 26px; transform-origin: 0% 50%; }
+.hd { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; font-size: 22px; color: #AEB4CC; }
+.av { width: 46px; height: 46px; border-radius: 50%; background: #C94F7C; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.nm { color: #fff; font-weight: 700; font-size: 26px; margin-right: auto; }
+.tx { font-size: 34px; line-height: 1.3; font-weight: 500; }
+.dots { display: flex; gap: 12px; padding: 10px 4px; }
+.dots i { width: 18px; height: 18px; border-radius: 50%; background: #9AA0BC; display: block; }
+.old { font-size: 26px; background: #2C3354; border-radius: 18px; padding: 10px 16px; margin: 8px 0; display: inline-block; }
+.typo { text-decoration: underline wavy #FF4D4D; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+.ph { width: 300px; height: 380px; border-radius: 18px; border: 3px solid #fff; background: #0E1430; position: relative; overflow: hidden; margin-top: 8px; }
 .bg { position: absolute; transform: translate(-50%,-50%); font-family: Anton; color: #fff; white-space: nowrap; letter-spacing: 3px; }
 </style></head><body>
-<div id="f"><svg id="ic" viewBox="0 0 1920 1080"></svg><div id="big"></div><div id="st"></div></div>
+<div id="f"><svg id="ic" viewBox="0 0 1920 1080"></svg><div id="big"></div><div id="cards"></div><div id="st"></div></div>
 <script src="timeline.js"></script>
 <script>
 // Transparent overlay: word-by-word subtitles (law 2) and white line-art icons (law 4). window.render(t) draws one frame.
@@ -50,5 +61,25 @@ window.render = t => {
     bh += `<div class="bg" style="left:${x}px;top:${y}px;font-size:${size}px;opacity:${pin * (1 - pout)};transform:translate(-50%,-50%) scale(${0.92 + 0.08 * pin})">${txt}</div>`;
   }
   document.getElementById('big').innerHTML = bh;
+  let ch = '';
+  for (const [a, b, kind, p] of (TL.cards || [])) {
+    if (t < a || t > b + 0.25) continue;
+    const pin = cl((t - a) / 0.35), pout = cl((t - b) / 0.25);
+    const sc = (0.85 + 0.15 * ease(pin)) * (1 - 0.1 * pout), op = Math.min(1, pin * 2) * (1 - pout), dx = (1 - ease(pin)) * 60;
+    const fl = 4 * Math.sin((t - a) * 2.2);
+    const head = `<div class="hd"><div class="av">M</div><div class="nm">Mom</div><div>${p && p.time ? p.time : 'now'}</div></div>`;
+    let body = '', top = 330;
+    if (kind === 'typing') body = '<div class="dots">' + [0,1,2].map(j => `<i style="opacity:${0.35 + 0.65 * (Math.floor(t * 6) % 3 === j)}"></i>`).join('') + '</div>';
+    if (kind === 'msg') body = `<div class="tx">${p.text}</div>`;
+    if (kind === 'photo') { body = `<div class="ph"><svg viewBox="0 0 300 380" style="position:absolute;inset:0" fill="none" stroke="#fff" stroke-width="3"><line x1="0" y1="315" x2="170" y2="315"/><path d="M170 315 H190 V335 H210 V355 H230 V375 H250"/><path d="M165 255 L300 365"/></svg><img src="cut/luna_dos.png" style="position:absolute;height:240px;left:85px;top:72px"></div>`; top = 220; }
+    if (kind === 'compare') {
+      const tu = cl((t - p.typo_t) / 0.4), pf = cl((t - p.perfect_t) / 0.4);
+      const olds = p.old.map(([txt, spans]) => { let h = '', i = 0; for (const [s0, e0] of spans) { h += txt.slice(i, s0) + `<span class="${tu > 0 ? 'typo' : ''}">` + txt.slice(s0, e0) + '</span>'; i = e0; } return `<div class="old">${h + txt.slice(i)}</div><br>`; }).join('');
+      body = `<div style="font-size:20px;color:#8C93B0;margin-bottom:4px">Yesterday</div>${olds}<div style="font-size:20px;color:#8C93B0;margin:10px 0 6px">Today 3:07 AM</div><div class="tx" style="font-size:30px;border-radius:18px;padding:10px 14px;outline:${5 * pf}px solid #FFD43B;outline-offset:4px">${p.new}</div>`;
+      top = 170;
+    }
+    ch += `<div class="card" style="top:${top + fl}px;opacity:${op};transform:translateX(${dx}px) scale(${sc})">${head}${body}</div>`;
+  }
+  document.getElementById('cards').innerHTML = ch;
 };
 </script></body></html>

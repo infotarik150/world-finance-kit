@@ -175,9 +175,9 @@ def state_at(seg, t):
 
 SEGS = {  # name: (duration, first_frame, last_frame, zoom_start, zoom_end, state)
     'hide': (6.0, 1, 151, 1.9, 2.2),
-    'typos': (7.0, 60, 100, 2.6, 2.9),
+    'typos': (7.0, 60, 100, 1.9, 2.1),
     'dont': (5.4, 1, 151, 1.9, 2.15),
-    'photo': (6.2, 100, 151, 2.2, 3.0),
+    'photo': (6.2, 100, 151, 1.9, 2.2),
     'final': (6.5, 151, 151, 1.0, 1.0),
 }
 if __name__ == '__main__':
@@ -188,6 +188,6 @@ if __name__ == '__main__':
         t = i / 30; u = i / max(1, n - 1)
         k = int(round(f0 + (f1 - f0) * u))
         z = z0 + (z1 - z0) * (u * u * (3 - 2 * u))
-        center = (TC['cx'] + 40, TC['cy'] - 40) if z > 1 else None
-        frame(k, t, state_at(seg, t), z, center).save(os.path.join(out, f'{i:04d}.png'))
+        center = (TC['cx'] + 330, TC['cy'] - 40) if z > 1 else None
+        frame(k, t, None if os.environ.get('RAW') else state_at(seg, t), z, center).save(os.path.join(out, f'{i:04d}.png'))
     print(seg, n)

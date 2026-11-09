@@ -1,4 +1,97 @@
 {
+ "cards": [
+  [
+   22.0,
+   24.0,
+   "typing",
+   null
+  ],
+  [
+   24.0,
+   27.6,
+   "msg",
+   {
+    "text": "I'm at work. Someone is in the house. Hide.",
+    "time": "3:07 AM"
+   }
+  ],
+  [
+   27.6,
+   34.6,
+   "compare",
+   {
+    "old": [
+     [
+      "omw home luv u",
+      [
+       [
+        0,
+        3
+       ],
+       [
+        9,
+        12
+       ]
+      ]
+     ],
+     [
+      "dont forgt ur lunch",
+      [
+       [
+        0,
+        4
+       ],
+       [
+        5,
+        10
+       ]
+      ]
+     ],
+     [
+      "proud of u kidddo",
+      [
+       [
+        11,
+        17
+       ]
+      ]
+     ]
+    ],
+    "new": "I'm at work. Someone is in the house. Hide.",
+    "typo_t": 28.4,
+    "perfect_t": 31.0
+   }
+  ],
+  [
+   57.0,
+   57.9,
+   "typing",
+   null
+  ],
+  [
+   57.9,
+   62.3,
+   "msg",
+   {
+    "text": "Don't go down those stairs.",
+    "time": "3:09 AM"
+   }
+  ],
+  [
+   62.4,
+   63.1,
+   "typing",
+   null
+  ],
+  [
+   63.1,
+   68.5,
+   "photo",
+   {
+    "time": "3:10 AM"
+   }
+  ]
+ ],
  "subs": [
   [
    "SOMEONE IS",
