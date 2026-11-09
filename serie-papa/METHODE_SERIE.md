@@ -10,3 +10,8 @@
    - ou faire **dessiner le texte directement dans l'image de départ** (par l'utilisateur ou par l'IA image), puis animer seulement les mains / la caméra ;
    - ou présenter le message comme une **bulle graphique hors du téléphone** (notification qui apparaît à côté), assumée comme un élément de montage.
    Toujours montrer un test de 2–3 secondes avant de monter toute la vidéo.
+7. **Prompts Kling précis (leçons de la vidéo 04, plans P5, P6, P7).** Kling 2.5 Turbo a tendance à : faire plusieurs mini-plans dans 5 s, « finir » l'action en revenant à l'état de départ (porte qui se referme, main qui rentre), bouger la caméra malgré « static camera », ignorer les petits gestes (poignée qui tourne). Pour l'éviter :
+   - **une seule action simple**, qui dure tout le plan (pas d'enchaînement « puis… ») ;
+   - **décrire l'état final** : « at the end of the shot, the door is still open and the hand is still reaching out » ;
+   - **lister ce qui ne doit pas arriver** : « the door never closes, the hand never goes back, no cuts, the camera does not move, no zoom » ;
+   - les petits détails (poignée, badge) se montrent au montage (zoom, son), pas dans l'animation.
