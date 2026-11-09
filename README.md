@@ -7,7 +7,7 @@ Tout ce qu'il faut pour refaire des vidéos TikTok dans le même style.
 - `moteur/` — le moteur d'animation (fond animé, personnage articulé, sous-titres, rendu, mixage audio).
 - `assets/` — musique, photo de profil, exemples de couvertures.
 - `exemples/` — les deux vidéos déjà faites, réutilisables comme modèles.
-- Les styles sont sur leurs propres branches : `world-finance` (style World Finance) et `serie-papa` (série Papa). Ils se chargent seulement sur demande.
+- `.claude/skills/video-tiktok/` — consignes du style, chargées seulement sur demande : taper `/video-tiktok` dans la conversation.
 
 Démarrage rapide dans une nouvelle session :
 ```bash
