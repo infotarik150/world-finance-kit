@@ -137,3 +137,4 @@ Total : **8 plans Kling ≈ 17 000 crédits (≈ 3,10 $)**. On commence par **P3
 - **P5** : image de départ fournie par l'utilisateur (`depart_p5.png`). La lampe de chevet est allumée : garder cette lampe allumée dans P6, P8 et P9 pour la continuité.
 - **P5** (`plans/p5.mp4`) : Kling a fait plusieurs mini-plans (porte qui se rouvre, Luna qui disparaît). Montage validé : **0–0,7 s** (main + silhouette au bout du couloir) puis coupe à **3,7–5 s** (porte fermée, chambre immobile) avec un bruit de porte qui claque.
 - **P6** : prompt donné à l'utilisateur, même chambre que P5 (porte bleu nuit à bord gris, poignée ronde argentée, lampe de chevet allumée, fenêtre avec la lune).
+- **P6** (`plans/p6.mp4`) : la poignée ne tourne pas et la porte s'entrouvre à partir de 2 s (contraire à l'histoire). Montage validé : **0–1,9 s** seulement (porte fermée, pieds, lumière qui vacille), zoom lent sur la poignée + **son de poignée qui tourne et bute** (porte fermée à clé).
