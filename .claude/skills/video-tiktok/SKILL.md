@@ -1,6 +1,6 @@
 ---
 name: video-tiktok
-description: Fabriquer une vidéo (format horizontal 1920×1080 par défaut) dans le style « World Finance » (personnages style nouille : héros bulle jaune moutarde, autres en formes créatives ; fond choisi à chaque vidéo ; sous-titres mot à mot ; voix ElevenLabs Quentin). À utiliser quand l'utilisateur veut créer, refaire ou adapter une vidéo TikTok, une couverture ou une photo de profil dans ce style.
+description: Fabriquer une vidéo (format horizontal 1920×1080 par défaut) dans le style « World Finance » (personnages style nouille : héros bulle jaune moutarde, autres en formes créatives ; fond choisi à chaque vidéo ; sous-titres mot à mot ; voix ElevenLabs Quentin). À utiliser seulement pour le style « World Finance » (personnages nouille). Pour la série avec Papa, Sophie, Luna, etc., utiliser le skill `serie-papa`.
 ---
 
 # Vidéo TikTok — style World Finance

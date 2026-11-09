@@ -2,6 +2,8 @@
 
 Liste fermée pour l'instant. On peut en ajouter si une histoire le demande : Claude le propose, l'utilisateur décide.
 
+Guide complet de la série : [../serie-papa/guide/README.md](../serie-papa/guide/README.md).
+
 **Règle de base : la planche de chaque personnage fait foi.** On garde tous ses détails, toujours, et on cache les logos de marque.
 Vidéos : IA (Kling 2.5 Turbo via ElevenLabs) à partir de l'image de départ découpée dans la planche (`serie-papa/<nom>_depart_16x9.png`), caméra cinématique. **Lois de la série : [../serie-papa/LOIS.md](../serie-papa/LOIS.md)** (fonds, etc.).
 Voix : ElevenLabs, modèle `eleven_v4`, anglais américain (public USA), 1 seule prise, voix déjà choisies (ne pas les retester).
