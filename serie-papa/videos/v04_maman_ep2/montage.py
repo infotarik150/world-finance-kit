@@ -72,6 +72,7 @@ def audio():
             tt = np.arange(n) / SR
             sw = 0.6 + 0.4 * np.exp(-((tt - 20) / 4) ** 2) + 0.5 * np.exp(-((tt - 77) / 5) ** 2) + 0.3 * np.exp(-((tt - 44) / 4) ** 2)
             sw *= np.where((tt > 27.3) & (tt < 28.6), 0.25, 1.0)   # "Silence."
+            sw *= np.where((tt > 7.0) & (tt < 8.0), 0.2, 1.0)     # hush just before the face is revealed
             sw *= np.clip((D - tt) / 1.5, 0, 1)
             x = x * sw
         put(mix, x, t, g)

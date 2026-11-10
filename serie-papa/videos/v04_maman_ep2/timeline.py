@@ -9,8 +9,9 @@ EP1 = '../v03_maman/plans/'
 #   black : [dur]
 SEG = [
     ('clip',  EP1 + 'p5_pov.mp4', 0.0, 3.4, 1.0),          # recap: top of the stairs (episode 1)
-    ('clip',  'plans/p3.mp4', 0.0, 2.3, 0.5),               # she looks up, jaw drops (slow motion)
-    ('still', 'depart_p3.png', 4.9, 1000, 330, 1.25, 1.6),  # "It's Mom's face. Almost."
+    ('still', 'depart_p2_dos.png', 4.6, 960, 420, 1.0, 1.12),     # her back: "Sweetie? Where are you going?" / "She looks up at you."
+    ('still', 'depart_p2_profil.png', 1.4, 990, 330, 1.08, 1.16), # first glimpse of the face: "Slowly." + reveal sting
+    ('clip',  'plans/p3.mp4', 0.0, 1.75, 0.5),              # full face, jaw drops: "It's Mom's face. Almost."
     ('still', 'depart_p3.png', 1.2, 1000, 340, 2.0, 2.2),   # "Stretched long."
     ('still', 'depart_p3.png', 2.4, 1060, 245, 3.2, 3.6),   # "The eyes, too far apart."
     ('still', 'depart_p3.png', 5.5, 990, 385, 2.4, 3.2),    # "And her mouth hangs open. Far too long. That is not Mom."
@@ -55,7 +56,8 @@ A = [
 GRAVE = 0.88   # speed/pitch factor of the last fake-Mom line
 
 # Sound effects: (file, video_start, gain, duration or None)
-FX = [('drone', 0.0, 0.22, None), ('poele', 3.4, 0.25, 17.3), ('impact', 24.25, 0.9, None),
+FX = [('drone', 0.0, 0.22, None), ('poele', 3.4, 0.3, 4.6), ('revelation', 8.0, 0.9, None), ('impact', 8.0, 0.6, None),
+      ('impact', 9.4, 0.35, None), ('impact', 24.25, 0.9, None),
       ('porte', 26.05, 0.9, None), ('poignee_verrouillee', 39.9, 0.7, None),
       ('grattement_porte', 43.0, 0.55, None), ('grattement_porte', 44.0, 0.45, None),
       ('placard_grince', 45.6, 0.5, None), ('grattement_porte', 62.6, 0.35, None),
