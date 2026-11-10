@@ -159,3 +159,17 @@ Night, the lawn in front of the house under flashing red and blue police lights.
 ```
 Night, on the lawn under flashing red and blue lights: the athletic dark-haired police officer from the reference (dark blue police uniform, scratch on his cheek) kneels on the grass and scoops up Luna (pink hair, grey t-shirt, headphones around her neck, ripped jeans with the injured leg, bracelets) in his arms, lifting her off the ground. She clings to his neck, crying. In the blurred background, the red-haired officer still fighting the monster near the police car. No blood, no gore. Pixar-style 3D characters exactly like the references. Flat solid very dark navy blue background (#0B1020), thin, clean white line-art outlines at half opacity, no texture, no shading, no extra details. Cinematic, 16:9, 1920x1080. Keep empty headroom at the top of the frame. No text, no logos.
 ```
+
+---
+
+## Ajout demandé : entre N23 (il la porte) et N24 (Luna sur la banquette)
+
+### N23b — il la dépose sur la banquette arrière (réf. : `N23.png`, `N24.png`, `N19.png`)
+```
+Night, flashing red and blue lights. Close shot at the open rear door of the police car: the athletic dark-haired police officer from the reference (dark blue police uniform, scratch on his cheek) leans into the car and quickly lays Luna (pink hair, grey t-shirt, headphones around her neck, ripped jeans with the bandaged injured leg, bracelets) down on the back seat, one hand behind her head. She is crying and holding his arm. Behind them, blurred, the lawn and the house. No blood, no gore. Pixar-style 3D characters exactly like the references. Flat solid very dark navy blue background (#0B1020), thin, clean white line-art outlines at half opacity, no texture, no shading, no extra details. Cinematic, 16:9, 1920x1080. Keep empty headroom at the top of the frame. No text, no logos.
+```
+
+### N23c — il saute au volant et démarre en trombe (réf. : `N19.png`, `N23.png`, `N16.png`)
+```
+Night, exterior wide shot of the street in front of the house: the police car speeds away with smoking, screeching tires, red and blue lights flashing; through the open driver's door we see the athletic dark-haired police officer from the reference jumping behind the wheel and slamming the door. In the background on the lawn, the fused monster from the reference (two stretched faces of Mom, four long clawed arms) turns its heads toward the car. The house and the street drawn with thin, clean white line-art outlines, the car in 3D. Fast, urgent, motion blur. No blood, no gore. Pixar-style 3D render. Flat solid very dark navy blue background (#0B1020), no texture, no shading, no extra details. Cinematic, 16:9, 1920x1080. No text, no logos.
+```
