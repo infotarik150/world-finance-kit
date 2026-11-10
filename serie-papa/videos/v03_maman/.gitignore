@@ -2,3 +2,4 @@ seg/
 seg2/
 pov/f_*.png
 pov/out_*/
+build/
