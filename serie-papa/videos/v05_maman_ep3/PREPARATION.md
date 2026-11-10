@@ -199,3 +199,4 @@ Lighting stays the same: warm orange lamp glow from the left, deep navy shadows.
 - Estimations des voix (version 2, avec les consignes de jeu) : narrateur ≈ 1 073, fausse maman ≈ 509, Luna ≈ 995 → **≈ 2 577 crédits**. Bruitages ≈ 100.
 - Besoin total : ≈ 4 242 (Kling) + 2 577 (voix) + 100 (bruitages) ≈ **6 900 crédits**.
 - Nouvel essai : l'ancien flow n'est plus accessible (« You do not have access to this template ») et le nouveau flow (`2v2hUgzsqW5qAOiqoPIC`) est dans **un autre espace ElevenLabs, sans abonnement payant** : la génération vidéo y est refusée (« Video generation needs a paid plan »). Rien n'a été généré ni débité.
+- Vérification des voix dans l'espace actuellement connecté : Frank, Marie et Veronica (les voix de la série) sont refusées : « You need to be on the creator tier or above to use this voice ». Il faut l'abonnement **Creator** (ou plus) sur le compte connecté.
