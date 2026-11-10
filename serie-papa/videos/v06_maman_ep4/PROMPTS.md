@@ -145,3 +145,17 @@ Keep exactly the same image as the third reference (same framing, same police ca
 
 
 **Décision** : on garde N20 telle quelle. Le policier 2 est le roux (barbe, lunettes rondes, tatouages). Pour N21 et N22, joindre `N20.png` comme référence des deux policiers.
+
+---
+
+## Ajout demandé : le passage entre N22 (le monstre attaque les policiers) et N23 (le Sportif porte Luna)
+
+### N22b — le policier roux retient le monstre, le Sportif se dégage (réf. : `N22.png`, `N20.png`, `N16.png`)
+```
+Night, the lawn in front of the house under flashing red and blue police lights. The red-haired police officer from the reference (red hair and beard, round glasses, tattooed arms, dark blue police uniform) is wrestling with the fused monster (two stretched faces of Mom, four long clawed arms, torn dark navy scrubs and cream apron with red stripes), holding it back with all his strength, shouting. In the foreground, the athletic dark-haired police officer from the reference (dark blue uniform, a scratch on his cheek, no blood) breaks free from the fight and turns his head toward the camera, toward Luna lying on the grass, with a determined look. No blood, no gore. Pixar-style 3D characters exactly like the references. Flat solid very dark navy blue background (#0B1020), the house and street drawn with thin, clean white line-art outlines at half opacity, no texture, no shading, no extra details. Cinematic horror atmosphere, 16:9, 1920x1080. Keep empty headroom at the top of the frame. No text, no logos.
+```
+
+### N22c — il court vers Luna et la ramasse dans l'herbe (réf. : `N23.png`, `N22.png`)
+```
+Night, on the lawn under flashing red and blue lights: the athletic dark-haired police officer from the reference (dark blue police uniform, scratch on his cheek) kneels on the grass and scoops up Luna (pink hair, grey t-shirt, headphones around her neck, ripped jeans with the injured leg, bracelets) in his arms, lifting her off the ground. She clings to his neck, crying. In the blurred background, the red-haired officer still fighting the monster near the police car. No blood, no gore. Pixar-style 3D characters exactly like the references. Flat solid very dark navy blue background (#0B1020), thin, clean white line-art outlines at half opacity, no texture, no shading, no extra details. Cinematic, 16:9, 1920x1080. Keep empty headroom at the top of the frame. No text, no logos.
+```
