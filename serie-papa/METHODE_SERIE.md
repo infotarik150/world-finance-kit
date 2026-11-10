@@ -21,3 +21,7 @@
    - **Au maximum 2 à 3 plans animés par l'IA (Kling)** par vidéo, réservés aux moments où le mouvement est indispensable (une course, un personnage qui surgit).
    - Une action se raconte par **plusieurs images successives** (ex. vidéo 04 : de dos → de profil → de face, avec un effet sonore de découverte), plutôt que par une animation.
    - Prévoir les images en conséquence : une image par étape de l'action, même cadrage, même décor.
+10. **Effets sonores : toujours validés par l'utilisateur avant le montage final.** Claude ne peut pas écouter le son ; il ne vérifie que les niveaux. Donc :
+   - proposer la liste des bruitages (moment, son voulu, intention) avec le script ;
+   - générer chaque bruitage (ElevenLabs, ≈ 17 crédits), puis **envoyer les fichiers à l'utilisateur pour écoute** ;
+   - ne monter que les sons validés ; en cas de doute, mieux vaut pas de son qu'un son faux.
