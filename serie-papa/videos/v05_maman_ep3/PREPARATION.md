@@ -83,3 +83,8 @@ Durée estimée : ≈ 65 s.
 5. Corps qui tombe sur le parquet.
 6. Vent de la nuit par la fenêtre ouverte.
 Plus : bourdonnement grave et cœur (déjà validés dans l'épisode 2).
+
+## 4. Prompts des images (donnés un par un)
+
+**A — Luna terrifiée : « No. We stay. »** (références : `personnages/references/ado_planche.png`, `../v04_maman_ep2/depart_p8.png`)
+> Close-up of Luna, the teen girl from the reference sheet (bright pink straight hair with straight bangs, freckles, big brown eyes, white-and-lilac headphones with a purple lightning bolt around her neck, grey raglan sleeves), hiding inside the same dark closet as the mom in the second reference image. She is terrified, eyes wide and glossy with tears, eyebrows raised, lips pressed tight, shaking her head "no", hugging her knees. Thin horizontal stripes of warm orange light from the closet slats fall across her face, the rest in deep shadow. Same framing and same closet as the mom's close-up, so the two shots can alternate. Pixar-style 3D character, every detail unchanged from the reference sheet. Flat solid very dark navy blue background (#0B1020), the closet drawn only with thin, clean white line-art outlines at half opacity, no texture, no shading, no extra details. Cinematic horror atmosphere, 16:9, 1920x1080. Keep empty headroom at the top of the frame. No text, no logos.
