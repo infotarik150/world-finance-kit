@@ -12,18 +12,22 @@ SEG = [
     ('still', EP2 + 'depart_p6.png', 4.6, 1079, 880, 2.0, 2.5, 0, 0),    # the feet under the door
     ('still', EP2 + 'depart_p8.png', 4.0, 960, 480, 1.0, 1.08, 0, 0),    # Mom: "Sweetie, it's gone..."
     ('still', 'depart_A.png', 3.8, 960, 480, 1.0, 1.08, 0, 0),           # Luna: "No. We stay."
-    ('still', EP2 + 'depart_p8.png', 2.4, 960, 430, 1.10, 1.20, 0, 0),   # Mom: "Listen to me..."
+    ('still', 'depart_I.png', 2.4, 960, 430, 1.0, 1.12, 0, 0),          # Mom, angry: "Listen to me..."
     ('still', 'depart_A.png', 1.8, 960, 430, 1.10, 1.22, 0, 3),          # Luna: "I'm not going!"
     ('still', 'depart_B.png', 3.5, 960, 560, 1.0, 1.10, 6, 10),          # "Get up! Get up!" / "No!"
     ('still', 'depart_C.png', 5.5, 960, 420, 1.0, 1.25, 0, 0),           # "Get... out..." / her voice cracks
     ('still', 'depart_D.png', 5.5, 900, 540, 1.0, 1.06, 0, 0),           # the phone buzzes: real Mom's message
     ('clip',  'plans/k1.mp4', 0.0, 5.04, 1.0),                           # her neck stretches (Kling)
     ('still', 'last:plans/k1.mp4', 2.66, 960, 300, 1.0, 1.15, 0, 0),     # "...just like the other one."
-    ('still', 'depart_E.png', 7.4, 960, 540, 1.0, 1.06, 4, 8),           # you slam it, you hold it / "Open the door, sweetie"
+    ('still', 'depart_J.png', 1.3, 900, 560, 1.0, 1.08, 6, 6),          # "You burst out." Luna escapes the closet
+    ('still', 'depart_J2.png', 2.2, 1000, 540, 1.0, 1.05, 4, 8),        # "You slam the closet shut." she pushes it closed
+    ('still', 'depart_E.png', 3.9, 960, 540, 1.0, 1.06, 4, 8),           # "You hold it." / "Open the door, sweetie"
     ('still', 'depart_F.png', 5.7, 960, 540, 1.0, 1.10, 8, 22),          # fingers through the slats, harder and harder
     ('black', 0.2),                                                     # you fall
+    ('still', 'depart_K.png', 1.6, 960, 560, 1.0, 1.08, 10, 2),         # the closet smashed open from inside
     ('clip',  'plans/k2.mp4', 0.0, 3.4, 0.75),                           # she climbs out over you (Kling, cut before her mouth closes)
-    ('still', 'at:plans/k2.mp4:3.35', 0.77, 960, 360, 1.0, 1.06, 3, 0),
+    ('still', 'at:plans/k2.mp4:3.35', 1.4, 960, 360, 1.0, 1.08, 3, 0),
+    ('still', 'depart_L.png', 2.0, 860, 420, 1.0, 1.15, 0, 0),           # from the floor, Luna looks at the window
     ('still', 'depart_H.png', 3.0, 960, 640, 1.0, 1.30, 0, 0),           # the window: two floors down (vertigo zoom)
     ('still', EP2 + 'depart_p6.png', 3.2, 1079, 700, 1.2, 1.6, 0, 0),    # the door: the other one is still out there
     ('still', 'build/choix.png', 4.7, 960, 540, 1.0, 1.04, 0, 0),        # the window, or the door?
@@ -64,7 +68,7 @@ FX = [('../../sons/drone.wav', 0.0, 0.22, None),
       ('1_vibration_ok.mp3', 31.2, 0.8, None),
       ('2_cou_etirement_ok.mp3', 37.6, 0.9, None), ('2_cou_etirement_ok.mp3', 39.4, 0.7, None),
       ('../../sons/impact.wav', 41.55, 0.55, None),
-      ('3_placard_claque_ok.mp3', 44.9, 1.0, None),
+      ('3_placard_claque_ok.mp3', 46.0, 1.0, None),
       ('4_placard_cogne_ok.mp3', 52.0, 0.55, None), ('4_placard_cogne_ok.mp3', 53.8, 0.75, None),
       ('4_placard_cogne_ok.mp3', 55.5, 1.0, None),
       ('5_chute.mp3', 57.35, 0.9, None),
@@ -78,6 +82,18 @@ RED = ('STAY', 'GONE', 'NOW', 'NOT', "MOM'S", 'WORK', 'NECK', 'COATS', 'MOUTH', 
 BIG = [['PART 3', 0.2, 3.2, 'tag'], ['WINDOW', 71.3, 74.6, 'leave'], ['DOOR', 72.6, 74.6, 'stay']]
 # notification card from the real Mom (typos on purpose, like in episode 1)
 CARDS = [[32.4, 36.4, 'msg', {'text': 'still at wrok. r u hiding?? dont open for anyone', 'time': '3:14 AM'}]]
+
+# inserted shots after the first cut: everything that starts after T moves by dt
+SHIFTS = [(58.4, 1.6), (63.0, 2.0)]
+def sh(t):
+    return round(t + sum(dt for T, dt in SHIFTS if t >= T), 3)
+A = [(f, a, b, sh(v)) for f, a, b, v in A]
+FX = [(f, sh(t), g, d) for f, t, g, d in FX]
+FX += [('3_placard_claque_ok.mp3', 57.55, 0.9, None), ('4_placard_cogne_ok.mp3', 57.6, 0.7, None),   # closet smashed
+       ('6_vent_ok.mp3', sh(63.0) - 2.0, 0.6, None)]                                                # wind while she looks at the window
+BOTTOM = [(sh(a), sh(b)) for a, b in BOTTOM]
+BIG = [[t, sh(a), sh(b), k] for t, a, b, k in BIG]
+CARDS = [[sh(a), sh(b), k, p] for a, b, k, p in CARDS]
 
 M = json.load(open('audio/mots.json'))
 src_of = {'fausse_grave': 'fausse', 'fausse_porte': 'fausse', 'luna_effort': 'luna'}
