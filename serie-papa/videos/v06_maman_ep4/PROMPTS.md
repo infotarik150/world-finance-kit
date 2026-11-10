@@ -135,3 +135,10 @@ Inside the police car at night, Luna (pink hair, grey sleeves, headphones, tears
 ```
 View through the rear window of the moving police car at night: on the dark road behind, under the streetlights and the red and blue glow, the fused monster runs after the car on all fours like an animal, impossibly fast, long arms and long necks, its two stretched faces of Mom staring straight at us, mouths open. The rear window frame and the road drawn in white line art. Haunting, terrifying, no blood, no gore. Pixar-style 3D render. Flat solid very dark navy blue background (#0B1020), thin, clean white line-art outlines at half opacity, no texture, no shading, no extra details. Cinematic horror atmosphere, 16:9, 1920x1080. No text, no logos.
 ```
+
+---
+
+### N20 — À REFAIRE (le policier de droite n'est pas Alex) (réf. : planche du Sportif, planche d'Alex, N20 actuelle `N20_v1.png` pour le cadrage)
+```
+Keep exactly the same image as the third reference (same framing, same police car, same red and blue lights, same left officer). Only change the officer on the right: he must be Alex, the man from the second reference sheet: short dark brown wavy hair, black rectangular glasses, clean-shaven face with no beard, no tattoos, slim build, same face as the reference sheet, wearing the same dark blue police uniform with a badge, holding his gun pointed forward with both hands, face shocked and terrified, mouth open. The officer on the left stays the athletic man from the first reference sheet, unchanged. Pixar-style 3D characters, faces exactly like the reference sheets, no logos. 16:9, 1920x1080. No text, no logos.
+```
