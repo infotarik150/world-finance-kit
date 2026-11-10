@@ -53,7 +53,7 @@ for img, (cx, cy, z0, z1, s0, s1), voices, sounds, extra, bottom in BLOCKS:
     for f, off, g in sounds: FX.append((f, round(t + off, 2), g, None))
     if bottom: BOTTOM.append((round(t, 2), round(t + dur, 2)))
     if img == 'N13.png':
-        CARDS.append([round(t + 1.2, 2), round(t + 5.6, 2), 'msg', {'text': 'Calling 911…', 'time': '', 'name': '911', 'av': '☎', 'color': '#2E7D32'}])
+        CARDS.append([round(t + 1.2, 2), round(t + 5.6, 2), 'msg', {'text': 'Calling 911…', 'time': '', 'name': '911', 'av': '☎', 'color': '#2E7D32', 'left': 140, 'top': 120}])
     t += dur
 D = round(t, 2)
 FX = [('../../sons/drone.wav', 0.0, 0.2, None)] + FX

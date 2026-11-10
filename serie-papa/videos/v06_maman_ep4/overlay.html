@@ -43,7 +43,7 @@ window.render = t => {
     if (t < a || t > b + 0.25) continue;
     const pin = cl((t - a) / 0.35), pout = cl((t - b) / 0.25);
     const sc = (0.85 + 0.15 * ease(pin)) * (1 - 0.1 * pout), op = Math.min(1, pin * 2) * (1 - pout), dx = (1 - ease(pin)) * 60;
-    ch += `<div class="notif" style="opacity:${op};transform:translateX(${dx}px) scale(${sc})"><div class="hd"><div class="av" style="background:${p.color || '#C94F7C'}">${p.av || 'M'}</div><div class="nm">${p.name || 'Mom'}</div><div>${p.time}</div></div><div class="tx">${p.text}</div></div>`;
+    ch += `<div class="notif" style="${p.left ? `left:${p.left}px;top:${p.top}px;` : ''}opacity:${op};transform:translateX(${dx}px) scale(${sc})"><div class="hd"><div class="av" style="background:${p.color || '#C94F7C'}">${p.av || 'M'}</div><div class="nm">${p.name || 'Mom'}</div><div>${p.time}</div></div><div class="tx">${p.text}</div></div>`;
   }
   document.getElementById('cards').innerHTML = ch;
 };
