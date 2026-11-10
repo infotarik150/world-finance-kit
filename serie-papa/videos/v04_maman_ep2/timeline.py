@@ -56,9 +56,10 @@ GRAVE = 0.88   # speed/pitch factor of the last fake-Mom line
 
 # Sound effects: (file, video_start, gain, duration or None)
 FX = [('drone', 0.0, 0.22, None), ('poele', 3.4, 0.25, 17.3), ('impact', 24.25, 0.9, None),
-      ('porte', 26.05, 0.9, None), ('poignee', 39.9, 0.7, None), ('grattement', 43.0, 0.6, None),
-      ('grattement', 62.6, 0.45, 0.8), ('chaise', 45.9, 0.25, None), ('poele', 66.2, 0.3, 4.0),
-      ('impact', 77.3, 0.45, None)]
+      ('porte', 26.05, 0.9, None), ('poignee_verrouillee', 39.9, 0.7, None),
+      ('grattement_porte', 43.0, 0.55, None), ('grattement_porte', 44.0, 0.45, None),
+      ('placard_grince', 45.6, 0.5, None), ('grattement_porte', 62.6, 0.35, None),
+      ('poele', 66.2, 0.3, 4.0), ('impact', 77.3, 0.45, None)]
 FX += [('coeur', 57.6 + 0.8 * k - 0.012 * k * k, 0.6, None) for k in range(14)]
 
 BOTTOM = [(3.4, 24.25), (51.3, 57.55), (68.4, 74.07)]   # subtitles at the bottom (face in the top area)

@@ -15,3 +15,4 @@
    - **décrire l'état final** : « at the end of the shot, the door is still open and the hand is still reaching out » ;
    - **lister ce qui ne doit pas arriver** : « the door never closes, the hand never goes back, no cuts, the camera does not move, no zoom » ;
    - les petits détails (poignée, badge) se montrent au montage (zoom, son), pas dans l'animation.
+8. **Bruitages réalistes (grattement, grincement, poignée) : ne pas les fabriquer par synthèse** (`fabriquer_sons.py` donne un bruit « moche » pour ces sons, vidéo 04). Les générer avec les effets sonores ElevenLabs (`eleven_text_to_sound_v2`, ≈ 17 crédits l'un), puis les normaliser et les ranger dans `serie-papa/sons/`. La synthèse reste bonne pour les sons simples (impact, drone, cœur, pop, whoosh).

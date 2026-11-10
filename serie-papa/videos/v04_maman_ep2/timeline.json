@@ -305,27 +305,33 @@
    null
   ],
   [
-   "poignee",
+   "poignee_verrouillee",
    39.9,
    0.7,
    null
   ],
   [
-   "grattement",
+   "grattement_porte",
    43.0,
-   0.6,
+   0.55,
    null
   ],
   [
-   "grattement",
-   62.6,
+   "grattement_porte",
+   44.0,
    0.45,
-   0.8
+   null
   ],
   [
-   "chaise",
-   45.9,
-   0.25,
+   "placard_grince",
+   45.6,
+   0.5,
+   null
+  ],
+  [
+   "grattement_porte",
+   62.6,
+   0.35,
    null
   ],
   [
