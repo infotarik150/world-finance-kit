@@ -56,7 +56,7 @@ Prise grave : [deep, guttural, distorted growl, slow] We... come... home!
 [out of breath, gentle, carrying her, running] I got you, kid.
 ```
 
-### Policier 2 — Alex, voix Terence (`hnhGxwvHP8fc469w51rM`)
+### Policier 2 — nouveau personnage roux (barbe rousse, lunettes rondes, tatouages), choisi par l'utilisateur pour bien le distinguer du Sportif ; voix Terence (`hnhGxwvHP8fc469w51rM`)
 ```
 [shouting, panicked, outside at night] Shoot it! [pause] Shoot!
 ```

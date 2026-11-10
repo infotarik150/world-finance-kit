@@ -138,7 +138,10 @@ View through the rear window of the moving police car at night: on the dark road
 
 ---
 
-### N20 — À REFAIRE (le policier de droite n'est pas Alex) (réf. : planche du Sportif, planche d'Alex, N20 actuelle `N20_v1.png` pour le cadrage)
+### N20 — (abandonné : l'utilisateur garde le policier roux pour bien distinguer les deux policiers) (réf. : planche du Sportif, planche d'Alex, N20 actuelle `N20_v1.png` pour le cadrage)
 ```
 Keep exactly the same image as the third reference (same framing, same police car, same red and blue lights, same left officer). Only change the officer on the right: he must be Alex, the man from the second reference sheet: short dark brown wavy hair, black rectangular glasses, clean-shaven face with no beard, no tattoos, slim build, same face as the reference sheet, wearing the same dark blue police uniform with a badge, holding his gun pointed forward with both hands, face shocked and terrified, mouth open. The officer on the left stays the athletic man from the first reference sheet, unchanged. Pixar-style 3D characters, faces exactly like the reference sheets, no logos. 16:9, 1920x1080. No text, no logos.
 ```
+
+
+**Décision** : on garde N20 telle quelle. Le policier 2 est le roux (barbe, lunettes rondes, tatouages). Pour N21 et N22, joindre `N20.png` comme référence des deux policiers.
