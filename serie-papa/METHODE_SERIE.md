@@ -25,3 +25,5 @@
    - proposer la liste des bruitages (moment, son voulu, intention) avec le script ;
    - générer chaque bruitage (ElevenLabs, ≈ 17 crédits), puis **envoyer les fichiers à l'utilisateur pour écoute** ;
    - ne monter que les sons validés ; en cas de doute, mieux vaut pas de son qu'un son faux.
+11. **Voix jouées selon la situation.** Chaque réplique reçoit une consigne qui tient compte de l'**endroit** (petit espace fermé, silence, quelqu'un tout près ou au loin, derrière une porte), de l'**effort physique** (tirer, retenir, tomber, courir), du **souffle** et de l'**émotion**. On ajoute des prises « non verbales » (souffle, effort, cri, chute) quand l'action le demande, et le montage complète (voix étouffée derrière une porte, appel lointain, voix grave et ralentie).
+12. **Prompts Kling détaillés seconde par seconde** : image de départ à garder, caméra (fixe ou mouvement précis), ce qui bouge de 0 à 5 s, ce qui ne bouge pas, lumière, **état final**, et la liste des **interdits** (« never… »). Ne rien laisser au hasard.
