@@ -193,3 +193,8 @@ End of the shot: the creature's face is right above the camera, very close, mout
 Never: she never moves back, she never closes her mouth, the camera never moves, Luna's hands never disappear, no blood, no gore, no cuts, no text.
 Lighting stays the same: warm orange lamp glow from the left, deep navy shadows. Keep the flat solid dark navy background with only simple white line-art outlines, do not add texture, shading or new details.
 ```
+
+## 8. Blocage crédits (lancement du 10/11)
+- Lancement de K1 et K2 refusé par ElevenLabs : **il reste 1 604 crédits**, un plan Kling en demande 2 121. Rien n'a été généré ni débité.
+- Estimations des voix (version 2, avec les consignes de jeu) : narrateur ≈ 1 073, fausse maman ≈ 509, Luna ≈ 995 → **≈ 2 577 crédits**. Bruitages ≈ 100.
+- Besoin total : ≈ 4 242 (Kling) + 2 577 (voix) + 100 (bruitages) ≈ **6 900 crédits**.
