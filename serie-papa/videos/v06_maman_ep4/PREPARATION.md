@@ -107,6 +107,6 @@ Pas lents sur le parquet ; porte de chambre défoncée ; combat (cris, coups) ; 
 Voix ≈ 3 000 crédits + bruitages ≈ 13 × 17 ≈ 220 → **≈ 3 200 crédits**.
 
 ## 5. Vidéo finale
-- `v06_maman_episode4.mp4` : 1 min 43 (102,8 s), −14 LUFS (crête −2 dB), 92 Mo. 25 images + 3 réutilisées, aucun plan Kling.
+- `v06_maman_episode4.mp4` : 1 min 46 (106,5 s), −14 LUFS (crête −2 dB), 95 Mo. 27 images (dont 2 de transition N22b, N22c : le policier roux retient le monstre, le Sportif ramasse Luna) + 3 réutilisées, aucun plan Kling.
 - Montage : `python3 timeline.py && python3 montage.py all` (timeline construite bloc par bloc : une image + ses voix et ses sons).
 - Voix et 13 bruitages validés par l'utilisateur. Opératrice avec filtre téléphone ; monstre = prise douce + prise grave superposées ; carte « Calling 911… » en haut à gauche.

@@ -38,6 +38,8 @@ BLOCKS = [
     ('N20.png', (960, 480, 1.0, 1.06, 0, 0), [('policier1', 0.0, 2.3, 0.0), ('policier2', 0.0, 2.4, 2.2)], [], 0.2, False),
     ('N21.png', (960, 500, 1.0, 1.10, 10, 14), [('narration', 57.0, 59.0, 0.0)], [('11_coups_feu_ok.mp3', 0.0, 1.0)], 0.0, False),
     ('N22.png', (960, 560, 1.0, 1.08, 2, 2), [('narration', 59.05, 61.3, 0.0)], [('03_combat_ok.mp3', 0.2, 0.4)], 0.2, True),
+    ('N22b.png', (1000, 500, 1.0, 1.08, 6, 6), [], [('03_combat_ok.mp3', 0.0, 0.7)], 0.7, False),   # the red-haired officer holds it back, the other breaks free
+    ('N22c.png', (1000, 480, 1.0, 1.08, 2, 2), [], [('03_combat_ok.mp3', 0.2, 0.35)], 0.6, False),  # he scoops Luna up from the grass
     ('N23.png', (960, 480, 1.0, 1.08, 3, 3), [('policier1', 3.0, 5.76, 0.2)], [('12_portiere_ok.mp3', 3.2, 0.9)], 0.3, False),
     ('N24.png', (960, 480, 1.0, 1.06, 2, 4), [('narration', 61.45, 64.6, 0.0)], [('13_voiture_ok.mp3', 0.0, 0.8)], 0.0, True),
     ('N25.png', (960, 420, 1.0, 1.25, 4, 6), [('narration', 64.65, 68.56, 0.2)], [], 2.2, False),
