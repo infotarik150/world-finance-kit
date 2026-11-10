@@ -1,0 +1,50 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+@font-face { font-family: Anton; src: url(../../polices/Anton-Regular.woff) format('woff'); }
+html, body { margin: 0; background: transparent; }
+#f { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+#st { position: absolute; left: 0; right: 0; text-align: center; font-family: Anton; font-size: 104px; line-height: 1.1; letter-spacing: 2px; }
+.tag { position: absolute; left: 70px; top: 60px; font-family: Anton; font-size: 46px; letter-spacing: 4px; color: #FF3B3B; border: 3px solid #FF3B3B; padding: 2px 16px; }
+.card { position: absolute; top: 215px; font-family: Anton; font-size: 120px; letter-spacing: 6px; padding: 6px 48px; transform-origin: 50% 50%; }
+.leave { left: 380px; background: #FFFFFF; color: #0B1020; }
+.stay { left: 1220px; background: #FF3B3B; color: #FFFFFF; }
+.notif { position: absolute; left: 1120px; top: 330px; width: 600px; background: rgba(28,32,52,.94); border-radius: 30px; box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 0 2px rgba(255,255,255,.08); color: #fff; font-family: Inter, Arial, sans-serif; padding: 22px 26px 26px; transform-origin: 0% 50%; }
+.hd { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; font-size: 22px; color: #AEB4CC; }
+.av { width: 46px; height: 46px; border-radius: 50%; background: #C94F7C; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.nm { color: #fff; font-weight: 700; font-size: 26px; margin-right: auto; }
+.tx { font-size: 36px; line-height: 1.3; font-weight: 500; }
+</style></head><body>
+<div id="f"><div id="big"></div><div id="cards"></div><div id="st"></div></div>
+<script src="timeline.js"></script>
+<script>
+// Transparent overlay: word-by-word subtitles (law 2), "PART 3" tag, WINDOW / DOOR cards, real Mom's message card. window.render(t) draws one frame.
+const ease = x => 1 + 2.7 * Math.pow(x - 1, 3) + 1.7 * Math.pow(x - 1, 2);   // back-out
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const TL = window.TLDATA;
+window.render = t => {
+  const st = document.getElementById('st');
+  const s = TL.subs.find(x => t >= x[1] && t < x[2]);
+  if (s) {
+    const p = cl((t - s[1]) / 0.09);
+    st.textContent = s[0]; st.style.color = s[3];
+    st.style.top = s[4] === 'bottom' ? '880px' : '50px';
+    st.style.transform = `scale(${0.88 + 0.12 * ease(p)})`; st.style.opacity = p;
+  } else st.textContent = '';
+  let bh = '';
+  for (const [txt, a, b, kind] of TL.big) {
+    if (t < a || t > b + 0.3) continue;
+    const pin = cl((t - a) / 0.35), pout = cl((t - b) / 0.3), op = Math.min(1, pin * 2) * (1 - pout);
+    if (kind === 'tag') bh += `<div class="tag" style="opacity:${op}">${txt}</div>`;
+    else bh += `<div class="card ${kind}" style="opacity:${op};transform:scale(${0.7 + 0.3 * ease(pin)})">${txt}</div>`;
+  }
+  document.getElementById('big').innerHTML = bh;
+  let ch = '';
+  for (const [a, b, kind, p] of (TL.cards || [])) {
+    if (t < a || t > b + 0.25) continue;
+    const pin = cl((t - a) / 0.35), pout = cl((t - b) / 0.25);
+    const sc = (0.85 + 0.15 * ease(pin)) * (1 - 0.1 * pout), op = Math.min(1, pin * 2) * (1 - pout), dx = (1 - ease(pin)) * 60;
+    ch += `<div class="notif" style="opacity:${op};transform:translateX(${dx}px) scale(${sc})"><div class="hd"><div class="av">M</div><div class="nm">Mom</div><div>${p.time}</div></div><div class="tx">${p.text}</div></div>`;
+  }
+  document.getElementById('cards').innerHTML = ch;
+};
+</script></body></html>
