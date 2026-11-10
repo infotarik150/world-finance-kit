@@ -16,3 +16,8 @@
    - **lister ce qui ne doit pas arriver** : « the door never closes, the hand never goes back, no cuts, the camera does not move, no zoom » ;
    - les petits détails (poignée, badge) se montrent au montage (zoom, son), pas dans l'animation.
 8. **Bruitages réalistes (grattement, grincement, poignée) : ne pas les fabriquer par synthèse** (`fabriquer_sons.py` donne un bruit « moche » pour ces sons, vidéo 04). Les générer avec les effets sonores ElevenLabs (`eleven_text_to_sound_v2`, ≈ 17 crédits l'un), puis les normaliser et les ranger dans `serie-papa/sons/`. La synthèse reste bonne pour les sons simples (impact, drone, cœur, pop, whoosh).
+9. **Nouvelle méthode par défaut (décidée après la vidéo 04) : surtout des images fixes, très peu d'animation IA.**
+   - Chaque vidéo se construit d'abord avec des **images fixes** préparées par l'utilisateur (prompts donnés par Claude), animées au montage : **zoom lent, recadrage sur un détail (visage, badge, poignée), légère rotation, coupes rapides, image figée**. C'est gratuit et on contrôle exactement ce qu'on voit.
+   - **Au maximum 2 à 3 plans animés par l'IA (Kling)** par vidéo, réservés aux moments où le mouvement est indispensable (une course, un personnage qui surgit).
+   - Une action se raconte par **plusieurs images successives** (ex. vidéo 04 : de dos → de profil → de face, avec un effet sonore de découverte), plutôt que par une animation.
+   - Prévoir les images en conséquence : une image par étape de l'action, même cadrage, même décor.

@@ -50,6 +50,8 @@ Ces 4 choix se présentent à l'utilisateur avec le script, **avant toute dépen
 - **Détourage ElevenLabs** (30 crédits) pour poser un personnage proprement sur un fond sombre.
 - **Mots clés des sous-titres en rouge** pour le suspense (HIDE, PASSWORD, BEHIND…).
 
+- **Images fixes animées au montage** (zoom, recadrage, rotation, coupes) plutôt que des plans IA : vidéo 04, révélation du visage en 3 images (dos → profil → face) + effet sonore de découverte. **2 à 3 plans Kling maximum par vidéo** (voir `../METHODE_SERIE.md`, règle 9).
+
 ## 5. Ce qui a raté (à ne pas refaire)
 
 - Dessiner soi-même un objet clé (la chaise de la vidéo 02) → forme fausse et animation catastrophique. **Toujours une vraie image 3D de l'objet.**
