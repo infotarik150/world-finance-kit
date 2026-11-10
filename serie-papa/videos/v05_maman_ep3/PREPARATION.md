@@ -202,7 +202,7 @@ Lighting stays the same: warm orange lamp glow from the left, deep navy shadows.
 - Vérification des voix dans l'espace actuellement connecté : Frank, Marie et Veronica (les voix de la série) sont refusées : « You need to be on the creator tier or above to use this voice ». Il faut l'abonnement **Creator** (ou plus) sur le compte connecté.
 
 ## 9. Vidéo finale
-- `v05_maman_episode3.mp4` : 73,5 s, −14 LUFS (crête −2,4 dB), 66 Mo. Montage : `python3 timeline.py && python3 montage.py all`.
+- `v05_maman_episode3.mp4` : 77,7 s, −14 LUFS (crête −2,3 dB), 70 Mo (avec les 5 images ajoutées : colère, fuite, porte retenue, placard cassé, regard vers la fenêtre). Montage : `python3 timeline.py && python3 montage.py all`.
 - K1 gardé en entier ; K2 coupé à 3,4 s (sa bouche se refermait), ralenti 0,75 puis figé.
 - Bruitages validés par l'utilisateur : vibration (baissée), cou « étirement », placard claqué (refait plus fort), placard qui cogne, vent (refait), **chute : la toute première version** (les variantes refaites n'ont pas été retenues).
 - « Open the door, sweetie » étouffé (filtre derrière la porte) ; « Get… out… » ralenti et grave ; prise d'effort de Luna sous la voix, sans sous-titres.
