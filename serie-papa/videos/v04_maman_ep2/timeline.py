@@ -9,9 +9,9 @@ EP1 = '../v03_maman/plans/'
 #   black : [dur]
 SEG = [
     ('clip',  EP1 + 'p5_pov.mp4', 0.0, 3.4, 1.0),          # recap: top of the stairs (episode 1)
-    ('still', 'depart_p2_dos.png', 5.2, 960, 420, 1.0, 1.12),     # her back: "Sweetie? Where are you going?" / "She looks up at you."
-    ('still', 'depart_p2_profil.png', 1.9, 990, 330, 1.08, 1.16), # first glimpse of the face: "Slowly." + reveal sting
-    ('clip',  'plans/p3.mp4', 0.0, 1.75, 0.5),              # full face, jaw drops: "It's Mom's face. Almost."
+    ('still', 'depart_p2_dos.png', 5.8, 1010, 300, 1.0, 1.25),     # her back: "Sweetie? Where are you going?" / "She looks up at you."
+    ('still', 'depart_p2_profil.png', 2.6, 990, 330, 1.25, 1.5), # first glimpse of the face: "Slowly." + reveal sting
+    ('clip',  'plans/p3.mp4', 0.0, 1.75, 0.5, 1000, 330, 1.5, 1.65),              # full face, jaw drops: "It's Mom's face. Almost."
     ('still', 'depart_p3.png', 1.2, 1000, 340, 2.0, 2.2),   # "Stretched long."
     ('still', 'depart_p3.png', 2.4, 1060, 245, 3.2, 3.6),   # "The eyes, too far apart."
     ('still', 'depart_p3.png', 5.5, 990, 385, 2.4, 3.2),    # "And her mouth hangs open. Far too long. That is not Mom."
@@ -44,7 +44,6 @@ A = [
     ('narration', 3.7, 19.9, 6.1),    # She looks up at you ... That is not Mom.
     ('narration', 20.0, 22.0, 22.4),  # Then it runs. You run too.
     ('narration', 22.0, 25.8, 24.4),  # Your room. The door. You slam it shut. Silence.
-    ('luna_souffle_ok', 0.0, 3.6, 27.2), # Luna out of breath behind the door
     ('fausse2', 0.0, 8.7, 28.8),      # Sweetie, why did you run? ... Please. (sly, persuasive)
     ('fausse2_grave', 8.7, 11.2, 37.8), # Your pancakes are getting cold. (slowed, lower)
     ('narration', 26.2, 33.6, 39.3),  # The doorknob turns ... the closet door creaks.
@@ -80,7 +79,7 @@ A = [(f, a, b, sh(v)) for f, a, b, v in A]
 FX = [(f, sh(t), g, d) for f, t, g, d in FX]
 BOTTOM = [(sh(a), sh(b)) for a, b in BOTTOM]
 BIG = [[x, sh(a), sh(b), k] for x, a, b, k in BIG]
-XFADES = [(1, 0.6), (2, 0.5)]   # blurred cross-fades: back -> profile -> face
+XFADES = [(1, 1.2), (2, 1.2)]   # slow dissolves (opacity 0 -> 100) while zooming in: back -> profile -> face
 
 M = json.load(open('audio/mots.json'))
 src_of = {'fausse_grave': 'fausse', 'fausse2_grave': 'fausse2'}
@@ -111,7 +110,7 @@ for k, s in enumerate(subs):
     s.append('bottom' if any(a <= s[1] < b for a, b in BOTTOM) else 'top')
 
 def seg_dur(s):
-    if s[0] == 'clip': return (s[3] - s[2]) / s[4]
+    if s[0] == 'clip': return (s[3] - s[2]) / s[4]  # (extra zoom params ignored)
     if s[0] == 'still': return s[2]
     return s[1]
 D = round(sum(seg_dur(s) for s in SEG) - sum(x for _, x in XFADES), 2)

@@ -26,8 +26,13 @@ def video():
     for i, s in enumerate(TL['segments']):
         out = f'{B}/seg_{i:02d}.mp4'; parts.append(out)
         if s[0] == 'clip':
-            _, src, a, b, sp = s; dur = (b - a) / sp
+            _, src, a, b, sp = s[:5]; dur = (b - a) / sp
             vf = f'trim=start={a}:end={b},setpts=(PTS-STARTPTS)/{sp},scale=1920:1080,setsar=1,framerate=fps={FPS}'
+            if len(s) > 5:   # slow zoom on a clip: centre (cx, cy), zoom z0 -> z1
+                cx, cy, z0, z1 = s[5:9]; n = round(dur * FPS)
+                z = f'({z0}+({z1}-{z0})*on/{max(n - 1, 1)})'
+                x = f'max(0,min(iw-iw/zoom,{2 * cx}-iw/zoom/2))'; y = f'max(0,min(ih-ih/zoom,{2 * cy}-ih/zoom/2))'
+                vf += f",scale=3840:2160,zoompan=z='{z}':x='{x}':y='{y}':d=1:s=1920x1080:fps={FPS},setsar=1"
             run(*FF, '-i', src, '-vf', vf, '-t', f'{dur:.3f}', *ENC, out)
         elif s[0] == 'still':
             _, img, dur, cx, cy, z0, z1 = s; n = round(dur * FPS); img = still_src(img)
@@ -49,7 +54,7 @@ def video():
             for k in range(1, len(chain)):
                 dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', chain[k - 1]], capture_output=True, text=True).stdout)
                 off += dur - xf[i + k - 1]
-                fc += f'{prev}[{k}:v]xfade=transition=hblur:duration={xf[i + k - 1]}:offset={off:.3f}[x{k}];'; prev = f'[x{k}]'
+                fc += f'{prev}[{k}:v]xfade=transition=fade:duration={xf[i + k - 1]}:offset={off:.3f}[x{k}];'; prev = f'[x{k}]'
                 off = off  # next offset accumulates from the merged stream
             run(*FF, *sum([['-i', c] for c in chain], []), '-filter_complex', fc.rstrip(';'), '-map', prev, *ENC, out)
             merged.append(out); i = j + 1
