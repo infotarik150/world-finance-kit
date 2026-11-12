@@ -9,26 +9,29 @@ EP1 = '../v03_maman/plans/'
 #   black : [dur]
 SEG = [
     ('clip',  EP1 + 'p5_pov.mp4', 0.0, 3.4, 1.0),          # recap: top of the stairs (episode 1)
-    ('still', 'depart_p2_dos.png', 4.6, 960, 420, 1.0, 1.12),     # her back: "Sweetie? Where are you going?" / "She looks up at you."
-    ('still', 'depart_p2_profil.png', 1.4, 990, 330, 1.08, 1.16), # first glimpse of the face: "Slowly." + reveal sting
+    ('still', 'depart_p2_dos.png', 5.2, 960, 420, 1.0, 1.12),     # her back: "Sweetie? Where are you going?" / "She looks up at you."
+    ('still', 'depart_p2_profil.png', 1.9, 990, 330, 1.08, 1.16), # first glimpse of the face: "Slowly." + reveal sting
     ('clip',  'plans/p3.mp4', 0.0, 1.75, 0.5),              # full face, jaw drops: "It's Mom's face. Almost."
     ('still', 'depart_p3.png', 1.2, 1000, 340, 2.0, 2.2),   # "Stretched long."
     ('still', 'depart_p3.png', 2.4, 1060, 245, 3.2, 3.6),   # "The eyes, too far apart."
     ('still', 'depart_p3.png', 5.5, 990, 385, 2.4, 3.2),    # "And her mouth hangs open. Far too long. That is not Mom."
     ('clip',  'plans/p3.mp4', 2.3, 4.55, 1.0),              # it runs up the stairs (end cut, black instead)
     ('black', 0.4),                                         # impact
+    ('still', 'depart_P5b.png', 1.8, 1100, 520, 1.0, 1.10),  # hallway: she walks after Luna, Luna runs into her room
     ('clip',  'plans/p5.mp4', 0.0, 0.7, 0.5),               # hand on the door, silhouette in the hallway
     ('clip',  'plans/p5.mp4', 3.7, 5.04, 1.0),              # door shut
     ('still', 'last:plans/p5.mp4', 1.11, 960, 540, 1.0, 1.02),  # "Silence."
     ('clip',  'plans/p6.mp4', 0.0, 1.4, 0.4),               # closed door, feet under it
-    ('still', 'at:plans/p6.mp4:1.35', 7.0, 1000, 600, 1.0, 1.12), # fake Mom behind the door
+    ('still', 'at:plans/p6.mp4:1.35', 8.5, 1000, 600, 1.0, 1.12), # fake Mom behind the door (Luna out of breath)
     ('still', 'depart_p6.png', 3.0, 1294, 497, 3.0, 3.6),   # "The doorknob turns. Slowly."
     ('still', 'depart_p6.png', 2.2, 1079, 880, 2.6, 3.0),   # "Then scratching."
     ('clip',  'plans/p7.mp4', 0.0, 3.7, 0.7),               # closet: the hand
     ('still', 'depart_p7.png', 1.81, 1340, 455, 4.6, 5.4),  # "Mom's hospital badge."
+    ('still', 'depart_P7b.png', 2.6, 1150, 420, 1.0, 1.10), # who is it? the real Mom, half out of the closet
     ('clip',  'plans/p8.mp4', 0.0, 2.5, 0.4),               # real Mom: shh
     ('clip',  'plans/p9.mp4', 0.0, 5.04, 1.0),              # hiding together (kept as is)
     ('still', 'depart_p6.png', 2.71, 1079, 880, 2.6, 2.4),  # "Outside, the scratching stops."
+    ('still', 'depart_P9b.png', 1.6, 960, 600, 1.0, 1.10),  # her feet going back down the stairs
     ('clip',  EP1 + 'p4_contreplongee.mp4', 0.0, 3.1, 1.0), # "Downstairs, the pan starts hissing again."
     ('clip',  'plans/p8.mp4', 2.5, 4.2, 0.3),               # "Listen... It's gone. Now."
     ('still', 'depart_p9.png', 10.93, 960, 640, 1.0, 1.45), # "the shadow hasn't moved" + LEAVE / STAY
@@ -39,9 +42,11 @@ A = [
     ('narration', 0.0, 3.4, 0.3),     # Last time, you chose to trust Mom on the phone.
     ('fausse', 1.6, 4.3, 3.4),        # Sweetie? Where are you going?   (first duplicated "Sweetie" cut)
     ('narration', 3.7, 19.9, 6.1),    # She looks up at you ... That is not Mom.
-    ('narration', 20.0, 25.8, 22.4),  # Then it runs ... Silence.
-    ('fausse', 4.9, 13.3, 28.8),      # Sweetie. Why did you run? ... Please.
-    ('fausse_grave', 13.3, 15.3, 37.3), # Your pancakes are getting cold. (slowed, lower)
+    ('narration', 20.0, 22.0, 22.4),  # Then it runs. You run too.
+    ('narration', 22.0, 25.8, 24.4),  # Your room. The door. You slam it shut. Silence.
+    ('luna_souffle_ok', 0.0, 3.6, 27.2), # Luna out of breath behind the door
+    ('fausse2', 0.0, 8.7, 28.8),      # Sweetie, why did you run? ... Please. (sly, persuasive)
+    ('fausse2_grave', 8.7, 11.2, 37.8), # Your pancakes are getting cold. (slowed, lower)
     ('narration', 26.2, 33.6, 39.3),  # The doorknob turns ... the closet door creaks.
     ('narration', 33.9, 38.1, 46.9),  # A hand. A blue sleeve. Mom's hospital badge.
     ('vraie', 0.0, 9.95, 51.5),       # Sweetie, in here ... It was already in the kitchen.
@@ -56,11 +61,10 @@ A = [
 GRAVE = 0.88   # speed/pitch factor of the last fake-Mom line
 
 # Sound effects: (file, video_start, gain, duration or None)
-FX = [('drone', 0.0, 0.22, None), ('poele', 3.4, 0.3, 4.6), ('revelation', 8.0, 0.9, None), ('impact', 8.0, 0.6, None),
+FX = [('drone', 0.0, 0.22, None), ('poele', 3.4, 0.3, 4.6),
       ('impact', 9.4, 0.35, None), ('impact', 24.25, 0.9, None),
       ('porte', 26.05, 0.9, None), ('poignee_verrouillee', 39.9, 0.7, None),
-      ('grattement_porte', 43.0, 0.55, None), ('grattement_porte', 44.0, 0.45, None),
-      ('placard_grince', 45.6, 0.5, None), ('grattement_porte', 62.6, 0.35, None),
+      ('placard_grince', 45.6, 0.5, None),
       ('poele', 66.2, 0.3, 4.0), ('impact', 77.3, 0.45, None)]
 FX += [('coeur', 57.6 + 0.8 * k - 0.012 * k * k, 0.6, None) for k in range(14)]
 
@@ -69,12 +73,23 @@ RED = ('PHONE', "MOM'S", 'LONG', 'APART', 'OPEN', 'PANCAKES', 'DOORKNOB', 'NOT',
        'SCRATCHING', 'CLOSET', 'BLUE', 'BADGE', 'REALLY', 'ALREADY', 'SHADOW', 'GONE', 'NOW', 'LEAVE', 'STAY')
 BIG = [['PART 2', 0.2, 3.2, 'tag'], ['LEAVE', 80.75, 84.4, 'leave'], ['STAY', 82.5, 84.4, 'stay']]
 
+# inserted shots (original times): everything that starts at or after T moves by dt
+SHIFTS = [(24.5, 1.8), (39.2, 1.5), (51.6, 2.6), (65.7, 1.6)]
+def sh(t): return round(t + sum(dt for T, dt in SHIFTS if t >= T), 2)
+A = [(f, a, b, sh(v)) for f, a, b, v in A]
+FX = [(f, sh(t), g, d) for f, t, g, d in FX]
+BOTTOM = [(sh(a), sh(b)) for a, b in BOTTOM]
+BIG = [[x, sh(a), sh(b), k] for x, a, b, k in BIG]
+XFADES = [(1, 0.6), (2, 0.5)]   # blurred cross-fades: back -> profile -> face
+
 M = json.load(open('audio/mots.json'))
-src_of = {'fausse_grave': 'fausse'}
+src_of = {'fausse_grave': 'fausse', 'fausse2_grave': 'fausse2'}
+NOSUB = ('luna_souffle_ok',)
 subs = []
 for f, a, b, v in A:
+    if f in NOSUB: continue
     words = [w for w in M[src_of.get(f, f)] if a - 0.05 <= w[1] < b]
-    k = GRAVE if f == 'fausse_grave' else 1.0
+    k = GRAVE if f.endswith('_grave') else 1.0
     buf = []
     def flush():
         if not buf: return
@@ -99,8 +114,8 @@ def seg_dur(s):
     if s[0] == 'clip': return (s[3] - s[2]) / s[4]
     if s[0] == 'still': return s[2]
     return s[1]
-D = round(sum(seg_dur(s) for s in SEG), 2)
-d = {'segments': SEG, 'audio': A, 'fx': FX, 'grave': GRAVE, 'subs': subs, 'big': BIG, 'duration': D}
+D = round(sum(seg_dur(s) for s in SEG) - sum(x for _, x in XFADES), 2)
+d = {'segments': SEG, 'audio': A, 'fx': FX, 'grave': GRAVE, 'subs': subs, 'big': BIG, 'duration': D, 'xfades': XFADES}
 json.dump(d, open('timeline.json', 'w'), indent=1)
 open('timeline.js', 'w').write('window.TLDATA=' + json.dumps(d) + ';')
 print('duration', D, 'subs', len(subs))

@@ -38,6 +38,24 @@ def video():
             run(*FF, '-loop', '1', '-i', img, '-vf', vf, '-frames:v', str(n), *ENC, out)
         else:
             run(*FF, '-f', 'lavfi', '-i', f'color=black:s=1920x1080:r={FPS}', '-t', str(s[1]), *ENC, out)
+    # blurred cross-fades between some consecutive segments (merged into one part first)
+    xf = dict((i, d) for i, d in TL.get('xfades', []))
+    merged, i = [], 0
+    while i < len(parts):
+        if i in xf:
+            j = i; chain = [parts[i]]
+            while j in xf: j += 1; chain.append(parts[j])
+            out = f'{B}/xf_{i:02d}.mp4'; fc, prev, off = '', '[0:v]', 0.0
+            for k in range(1, len(chain)):
+                dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', chain[k - 1]], capture_output=True, text=True).stdout)
+                off += dur - xf[i + k - 1]
+                fc += f'{prev}[{k}:v]xfade=transition=hblur:duration={xf[i + k - 1]}:offset={off:.3f}[x{k}];'; prev = f'[x{k}]'
+                off = off  # next offset accumulates from the merged stream
+            run(*FF, *sum([['-i', c] for c in chain], []), '-filter_complex', fc.rstrip(';'), '-map', prev, *ENC, out)
+            merged.append(out); i = j + 1
+        else:
+            merged.append(parts[i]); i += 1
+    parts = merged
     inputs = sum([['-i', p] for p in parts], [])
     fc = ''.join(f'[{i}:v]' for i in range(len(parts))) + f'concat=n={len(parts)}:v=1:a=0[v]'
     run(*FF, *inputs, '-filter_complex', fc, '-map', '[v]', *ENC, f'{B}/video.mp4')
@@ -51,10 +69,10 @@ def audio():
     D = TL['duration']; mix = np.zeros(int((D + 1) * SR), np.float32); voice = np.zeros_like(mix)
     def put(buf, x, t, g=1.0):
         i = int(t * SR); x = x[:max(0, len(buf) - i)]; buf[i:i + len(x)] += g * x
-    V = {f: load(f'audio/{f}.mp3') for f in ('narration', 'fausse', 'vraie', 'vraie_listen')}
+    V = {f: load(f'audio/{f}.mp3') for f in ('narration', 'fausse', 'fausse2', 'vraie', 'vraie_listen', 'luna_souffle_ok')}
     for f, a, b, v in TL['audio']:
-        if f == 'fausse_grave':   # slower and lower: resample at a lower rate
-            x = V['fausse'][int(a * SR):int(b * SR)]; k = TL['grave']
+        if f.endswith('_grave'):   # slower and lower: resample at a lower rate
+            x = V[f[:-6]][int(a * SR):int(b * SR)]; k = TL['grave']
             x = np.interp(np.arange(0, len(x), k), np.arange(len(x)), x).astype(np.float32)
         else:
             x = V[f][int(a * SR):int(b * SR)]
