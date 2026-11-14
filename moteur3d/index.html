@@ -1,0 +1,339 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: Poppins; font-weight: 800; src: url(node_modules/@fontsource/poppins/files/poppins-latin-800-normal.woff2); }
+  html, body { margin: 0; background: #000; overflow: hidden; }
+  #stage { position: relative; width: 1080px; height: 1920px; }
+  canvas { display: block; }
+  #word {
+    position: absolute; left: 0; right: 0; top: 1130px; text-align: center;
+    font: 800 76px Poppins, sans-serif; color: #fff; letter-spacing: -1px;
+    -webkit-text-stroke: 3px rgba(0,0,0,.85); paint-order: stroke fill;
+    text-shadow: 0 4px 14px rgba(0,0,0,.65);
+  }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "./node_modules/three/build/three.module.js",
+  "three/addons/": "./node_modules/three/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="stage"><div id="word"></div></div>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const W = 1080, H = 1920, FPS = 30;
+const params = new URLSearchParams(location.search);
+const scale = Number(params.get('scale') || 1);
+
+// ---------- renderer / scene ----------
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(scale);
+renderer.setSize(W, H);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.getElementById('stage').prepend(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x07090c);
+scene.fog = new THREE.Fog(0x07090c, 9, 22);
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.35;
+
+const camera = new THREE.PerspectiveCamera(38, W / H, 0.05, 60);
+
+// ---------- lights ----------
+scene.add(new THREE.HemisphereLight(0x9fb4c8, 0x101010, 0.35));
+const key = new THREE.SpotLight(0xfff1e0, 260, 20, 0.45, 0.6, 1.6);
+key.position.set(1.5, 7, 3.5);
+key.target.position.set(0, 1, 0);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.bias = -0.0004;
+scene.add(key, key.target);
+const rim = new THREE.DirectionalLight(0x7fffb0, 1.4);
+rim.position.set(-3, 3, -4);
+scene.add(rim);
+const redLight = new THREE.PointLight(0xff2a2a, 0, 12, 1.5);
+redLight.position.set(-1.6, 1.6, 0.8);
+scene.add(redLight);
+
+// ---------- stage ----------
+const floor = new THREE.Mesh(
+  new THREE.CircleGeometry(14, 64),
+  new THREE.MeshStandardMaterial({ color: 0x15181d, roughness: 0.28, metalness: 0.35 })
+);
+floor.rotation.x = -Math.PI / 2;
+floor.receiveShadow = true;
+scene.add(floor);
+// round podium the character stands on
+const podium = new THREE.Mesh(
+  new THREE.CylinderGeometry(1.15, 1.25, 0.12, 64),
+  new THREE.MeshStandardMaterial({ color: 0x23272e, roughness: 0.4, metalness: 0.5 })
+);
+podium.position.y = 0.06; podium.receiveShadow = true; podium.castShadow = true;
+scene.add(podium);
+const ring = new THREE.Mesh(
+  new THREE.TorusGeometry(1.2, 0.012, 8, 96),
+  new THREE.MeshBasicMaterial({ color: 0x76ff8a })
+);
+ring.rotation.x = -Math.PI / 2; ring.position.y = 0.125;
+scene.add(ring);
+
+// ---------- giant LED screen with a live chart ----------
+const chartCanvas = document.createElement('canvas');
+chartCanvas.width = 1600; chartCanvas.height = 900;
+const cx = chartCanvas.getContext('2d');
+const chartTex = new THREE.CanvasTexture(chartCanvas);
+chartTex.colorSpace = THREE.SRGBColorSpace;
+const screen = new THREE.Mesh(
+  new THREE.PlaneGeometry(9.6, 5.4),
+  new THREE.MeshBasicMaterial({ map: chartTex, toneMapped: false })
+);
+screen.position.set(0, 2.75, -4.6);
+scene.add(screen);
+const frame = new THREE.Mesh(
+  new THREE.BoxGeometry(9.9, 5.7, 0.15),
+  new THREE.MeshStandardMaterial({ color: 0x0b0d10, roughness: 0.5, metalness: 0.6 })
+);
+frame.position.set(0, 2.75, -4.7);
+scene.add(frame);
+
+// price path: climbs, then breaks at t=2.0 and collapses
+const N = 120;
+const pts = [];
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+for (let i = 0; i < N; i++) {
+  const u = i / (N - 1);
+  const trend = u < 0.62 ? 0.18 + u * 1.1 : 0.18 + 0.62 * 1.1 - (u - 0.62) * 1.75;
+  pts.push(trend + (rnd() - 0.5) * 0.06);
+}
+function drawChart(t) {
+  const w = chartCanvas.width, h = chartCanvas.height;
+  // crash progress
+  const crash = THREE.MathUtils.smoothstep(t, 2.0, 4.2);
+  const reveal = THREE.MathUtils.clamp(0.45 + t / 4.2 * 0.55, 0, 1);
+  cx.fillStyle = '#05080a'; cx.fillRect(0, 0, w, h);
+  // grid
+  cx.strokeStyle = 'rgba(255,255,255,0.06)'; cx.lineWidth = 2;
+  for (let x = 0; x <= w; x += 100) { cx.beginPath(); cx.moveTo(x, 0); cx.lineTo(x, h); cx.stroke(); }
+  for (let y = 0; y <= h; y += 100) { cx.beginPath(); cx.moveTo(0, y); cx.lineTo(w, y); cx.stroke(); }
+  const n = Math.max(2, Math.floor(N * reveal));
+  const X = i => 80 + (i / (N - 1)) * (w - 160);
+  const Y = v => h - 120 - v * (h - 260);
+  const col = crash > 0.02 ? `rgb(${Math.round(118 + 137 * crash)},${Math.round(255 - 213 * crash)},${Math.round(138 - 96 * crash)})` : '#76ff8a';
+  // area
+  const grad = cx.createLinearGradient(0, 0, 0, h);
+  grad.addColorStop(0, crash > 0.5 ? 'rgba(255,50,50,0.35)' : 'rgba(118,255,138,0.30)');
+  grad.addColorStop(1, 'rgba(0,0,0,0)');
+  cx.beginPath(); cx.moveTo(X(0), h);
+  for (let i = 0; i < n; i++) cx.lineTo(X(i), Y(pts[i]));
+  cx.lineTo(X(n - 1), h); cx.closePath(); cx.fillStyle = grad; cx.fill();
+  // line
+  cx.beginPath();
+  for (let i = 0; i < n; i++) i ? cx.lineTo(X(i), Y(pts[i])) : cx.moveTo(X(i), Y(pts[i]));
+  cx.strokeStyle = col; cx.lineWidth = 10; cx.lineJoin = 'round';
+  cx.shadowColor = col; cx.shadowBlur = 30; cx.stroke(); cx.shadowBlur = 0;
+  // head dot
+  cx.beginPath(); cx.arc(X(n - 1), Y(pts[n - 1]), 16, 0, Math.PI * 2); cx.fillStyle = col; cx.fill();
+  // ticker label
+  cx.font = '800 110px Poppins, sans-serif'; cx.fillStyle = '#ffffff'; cx.textBaseline = 'top';
+  cx.textAlign = 'right'; cx.fillText('NVDA', w / 2 + 120, 150); cx.textAlign = 'left';
+  cx.font = '800 110px Poppins, sans-serif'; cx.fillStyle = col;
+  cx.fillText(crash > 0.15 ? '▼' : '▲', w / 2 + 150, 150);
+  chartTex.needsUpdate = true;
+  screen.material.color.setScalar(1);
+}
+
+// ---------- the chip (metaphor: the company's core, about to split) ----------
+const chip = new THREE.Group();
+const pedestal = new THREE.Mesh(
+  new THREE.CylinderGeometry(0.32, 0.38, 1.0, 40),
+  new THREE.MeshStandardMaterial({ color: 0x1d2127, roughness: 0.35, metalness: 0.6 })
+);
+pedestal.position.set(-1.9, 0.5, 0.3); pedestal.castShadow = true; pedestal.receiveShadow = true;
+scene.add(pedestal);
+function chipHalf(sign) {
+  const g = new THREE.Group();
+  const board = new THREE.Mesh(
+    new THREE.BoxGeometry(0.4, 0.07, 0.8),
+    new THREE.MeshStandardMaterial({ color: 0x0f3a22, roughness: 0.45, metalness: 0.3 })
+  );
+  board.castShadow = true; g.add(board);
+  const die = new THREE.Mesh(
+    new THREE.BoxGeometry(0.22, 0.05, 0.46),
+    new THREE.MeshStandardMaterial({ color: 0x1a1d22, roughness: 0.2, metalness: 0.8, emissive: 0x2bff6a, emissiveIntensity: 0.0 })
+  );
+  die.position.set(sign * -0.09, 0.055, 0); g.add(die); g.userData.die = die;
+  const pinMat = new THREE.MeshStandardMaterial({ color: 0xd8b25a, roughness: 0.25, metalness: 1 });
+  for (let k = 0; k < 7; k++) {
+    const pin = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.012, 0.05), pinMat);
+    pin.position.set(sign * 0.21, 0, -0.33 + k * 0.11); g.add(pin);
+  }
+  for (let k = 0; k < 3; k++) {
+    for (const z of [-0.42, 0.42]) {
+      const pin = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.012, 0.06), pinMat);
+      pin.position.set(sign * (0.04 + k * 0.11), 0, z); g.add(pin);
+    }
+  }
+  g.position.x = sign * 0.2;
+  return g;
+}
+const halfL = chipHalf(-1), halfR = chipHalf(1);
+chip.add(halfL, halfR);
+const crack = new THREE.Mesh(
+  new THREE.BoxGeometry(0.02, 0.09, 0.82),
+  new THREE.MeshBasicMaterial({ color: 0xff3030, toneMapped: false, transparent: true, opacity: 0 })
+);
+chip.add(crack);
+chip.position.set(-1.9, 1.25, 0.3);
+scene.add(chip);
+// sparks when it breaks
+const sparkCount = 90;
+const sparkGeo = new THREE.BufferGeometry();
+sparkGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(sparkCount * 3), 3));
+const sparkVel = []; seed = 99;
+for (let i = 0; i < sparkCount; i++) sparkVel.push(new THREE.Vector3((rnd() - 0.5) * 2.2, rnd() * 2.6 + 0.6, (rnd() - 0.5) * 2.2));
+const sparks = new THREE.Points(sparkGeo, new THREE.PointsMaterial({ color: 0xff6a3a, size: 0.035, toneMapped: false, transparent: true }));
+scene.add(sparks);
+
+// floating dust in the spotlight
+const dustCount = 400; seed = 3;
+const dustGeo = new THREE.BufferGeometry();
+const dustBase = new Float32Array(dustCount * 3);
+for (let i = 0; i < dustCount; i++) { dustBase[i*3] = (rnd()-0.5)*6; dustBase[i*3+1] = rnd()*5; dustBase[i*3+2] = (rnd()-0.5)*6; }
+dustGeo.setAttribute('position', new THREE.BufferAttribute(dustBase.slice(), 3));
+const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.012, transparent: true, opacity: 0.45 }));
+scene.add(dust);
+
+// ---------- character ----------
+let mixer, actions = {};
+const gltf = await new GLTFLoader().loadAsync('models/Xbot.glb');
+const hero = gltf.scene;
+hero.traverse(o => {
+  if (o.isMesh) {
+    o.castShadow = true;
+    const name = o.material.name;
+    o.material = name.includes('Joints')
+      ? new THREE.MeshStandardMaterial({ color: 0x2f9e55, roughness: 0.35, metalness: 0.6 })
+      : new THREE.MeshStandardMaterial({ color: 0x1b1c20, roughness: 0.42, metalness: 0.25 });
+  }
+});
+hero.position.set(0, 0.12, 0);
+scene.add(hero);
+mixer = new THREE.AnimationMixer(hero);
+for (let clip of gltf.animations) {
+  if (['headShake', 'sad_pose', 'agree'].includes(clip.name)) {
+    THREE.AnimationUtils.makeClipAdditive(clip);
+    if (clip.name.endsWith('_pose')) clip = THREE.AnimationUtils.subclip(clip, clip.name, 2, 3, 30);
+  }
+  const a = mixer.clipAction(clip); a.play(); a.setEffectiveWeight(0);
+  actions[clip.name] = a;
+}
+
+// ---------- subtitles (one word at a time, like the reference) ----------
+const words = [
+  [0.10, 'One'], [0.55, 'secret'], [1.20, 'just'], [1.55, 'shook'],
+  [2.25, 'Nvidia'], [3.10, 'to'], [3.35, 'its'], [3.65, 'core.'],
+];
+const wordEl = document.getElementById('word');
+function setWord(t) {
+  let w = '';
+  for (const [s, txt] of words) if (t >= s) w = txt;
+  if (t > 4.75) w = '';
+  wordEl.textContent = w;
+  // tiny pop on each new word
+  const cur = [...words].reverse().find(([s]) => t >= s);
+  const age = cur ? t - cur[0] : 1;
+  const k = 1 + 0.12 * Math.max(0, 1 - age / 0.12);
+  wordEl.style.transform = `scale(${k})`;
+}
+
+// ---------- shots (hard cuts, like the reference) ----------
+const ease = x => x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+const v = (x, y, z) => new THREE.Vector3(x, y, z);
+const shots = [
+  { a: 0.0, b: 1.9, from: [v(0.25, 1.6, 7.2), v(0, 1.75, 0)], to: [v(0.1, 1.45, 5.4), v(0, 1.6, 0)], fov: 40 },
+  { a: 1.9, b: 3.25, from: [v(1.05, 0.95, 2.3), v(-0.1, 1.55, -0.5)], to: [v(0.8, 1.0, 1.95), v(-0.1, 1.6, -0.5)], fov: 36 },
+  { a: 3.25, b: 5.01, from: [v(2.6, 0.75, 3.6), v(-0.9, 1.15, 0)], to: [v(3.1, 0.95, 3.0), v(-0.9, 1.15, 0)], fov: 40 },
+];
+function placeCamera(t) {
+  const s = shots.find(s => t >= s.a && t < s.b) || shots[shots.length - 1];
+  const u = ease(THREE.MathUtils.clamp((t - s.a) / (s.b - s.a), 0, 1));
+  camera.position.lerpVectors(s.from[0], s.to[0], u);
+  const look = new THREE.Vector3().lerpVectors(s.from[1], s.to[1], u);
+  camera.fov = s.fov; camera.updateProjectionMatrix();
+  camera.lookAt(look);
+}
+
+// ---------- timeline ----------
+function setAction(name, w, localT) {
+  const a = actions[name];
+  a.setEffectiveWeight(w);
+  a.time = Math.max(0, localT) % a.getClip().duration;
+}
+window.renderAt = (t) => {
+  // character
+  setAction('idle', 1, t);
+  setAction('headShake', THREE.MathUtils.smoothstep(t, 2.0, 2.2) * (1 - THREE.MathUtils.smoothstep(t, 3.6, 3.9)), t - 2.0);
+  setAction('sad_pose', THREE.MathUtils.smoothstep(t, 3.3, 3.9), 0);
+  mixer.update(0);
+
+  // chart + screen
+  drawChart(t);
+
+  // chip break at 3.55s
+  const br = THREE.MathUtils.clamp((t - 3.55) / 0.9, 0, 1);
+  const be = 1 - Math.pow(1 - br, 3);
+  const pre = THREE.MathUtils.smoothstep(t, 3.0, 3.55);
+  const shake = pre * (1 - br) * 0.012 * Math.sin(t * 90);
+  halfL.position.set(-0.2 - be * 0.35 + shake, -be * 0.05, 0);
+  halfR.position.set(0.2 + be * 0.35 - shake, -be * 0.05, 0);
+  halfL.rotation.z = be * 0.45; halfR.rotation.z = -be * 0.45;
+  halfL.rotation.y = be * 0.15; halfR.rotation.y = -be * 0.2;
+  crack.material.opacity = pre * (1 - br);
+  chip.rotation.y = t * 0.35;
+  chip.position.y = 1.25 + Math.sin(t * 2.0) * 0.03;
+  for (const h of [halfL, halfR]) {
+    h.userData.die.material.emissive.setHex(br > 0 ? 0xff2a2a : 0x2bff6a);
+    h.userData.die.material.emissiveIntensity = br > 0 ? 1.6 * (1 - br * 0.6) : 0.9 + 0.3 * Math.sin(t * 4);
+  }
+  redLight.intensity = br > 0 ? 18 * Math.exp(-(t - 3.55) * 2.2) + 3 : 0;
+  rim.color.lerpColors(new THREE.Color(0x7fffb0), new THREE.Color(0xff4a4a), THREE.MathUtils.smoothstep(t, 2.2, 3.8));
+  ring.material.color.copy(rim.color);
+  // sparks
+  const sp = sparkGeo.attributes.position;
+  const st = Math.max(0, t - 3.55);
+  for (let i = 0; i < sparkCount; i++) {
+    const p = sparkVel[i];
+    sp.setXYZ(i, chip.position.x + p.x * st, chip.position.y + p.y * st - 4.9 * st * st, chip.position.z + p.z * st);
+  }
+  sp.needsUpdate = true;
+  sparks.material.opacity = t < 3.55 ? 0 : Math.max(0, 1 - st / 1.2);
+  // dust drift
+  const dp = dustGeo.attributes.position;
+  for (let i = 0; i < dustCount; i++) {
+    dp.setY(i, (dustBase[i*3+1] + t * 0.08) % 5);
+    dp.setX(i, dustBase[i*3] + Math.sin(t * 0.6 + i) * 0.05);
+  }
+  dp.needsUpdate = true;
+
+  placeCamera(t);
+  setWord(t);
+  renderer.render(scene, camera);
+};
+await document.fonts.load('800 76px Poppins');
+window.FPS = FPS; window.DURATION = 5.0;
+window.ready = true;
+</script>
+</body>
+</html>
